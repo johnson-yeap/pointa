@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
 	def index
 	end
-	
+
     def new
         @user = User.new
     end
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
         else
             # fail
             flash[:danger] = "Please try again"
-            render 'new'
+            redirect_to new_user_path
         end
     end
 
