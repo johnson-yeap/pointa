@@ -12,6 +12,7 @@ class UsersController < ApplicationController
         
         if @user.save
             # success
+            UserNotifier.signup_email(@user).deliver
             flash[:success] = "Your account has been successfully created"
             redirect_to root_path
         else
