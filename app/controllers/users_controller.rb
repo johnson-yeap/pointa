@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < SecureApplicationController
 
 	def index
 	end
@@ -14,12 +14,27 @@ class UsersController < ApplicationController
             # success
             UserNotifier.signup_email(@user).deliver
             flash[:success] = "Your account has been successfully created"
-            redirect_to root_path
+            redirect_to dashboard_path
         else
             # fail
             flash[:danger] = "Please try again"
             redirect_to new_user_path
         end
+    end
+
+    def dashboard
+    end
+
+    def fulfillment
+    end
+
+    def enrollment
+    end
+
+    def course
+    end
+
+    def analysis
     end
 
     private
