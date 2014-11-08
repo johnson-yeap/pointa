@@ -4,9 +4,12 @@ Rails.application.routes.draw do
   post   'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
-  get     'dashboard' => 'users#dashboard'
+  resources :users do
+    member do
+      get 'dashboard'
+    end
+  end
 
-  resources :users
 
   root 'sessions#new'
   # The priority is based upon order of creation: first created -> highest priority.

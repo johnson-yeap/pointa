@@ -14,7 +14,7 @@ class UsersController < SecureApplicationController
             # success
             UserNotifier.signup_email(@user).deliver
             flash[:success] = "Your account has been successfully created"
-            redirect_to dashboard_path
+            redirect_to dashboard_user_path(@user.id)
         else
             # fail
             flash[:danger] = "Please try again"
@@ -23,6 +23,7 @@ class UsersController < SecureApplicationController
     end
 
     def dashboard
+        @student = Student.find_by(user_id: params[:id])
     end
 
     def fulfillment

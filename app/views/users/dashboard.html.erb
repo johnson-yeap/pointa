@@ -1,16 +1,29 @@
 Dashboard
 <br>
 <br>
-Student Name
+Student Name : <%= @student.name %>
 <br>
-Student Matric No
+Student Matric No : <%= @student.matric_no %>
 <br>
-Programme: Student Bachelor
+Programme : <%= @student.department.bachelor.name %>
 <br>
-Student Department
+Student Department : <%= @student.department.name %>
 <br>
 Current CGPA
 <br>
 <br>
 <br>
 List of Semesters
+
+<br>
+<br>
+Params
+<br>
+<%= params %>
+<br>
+User
+<br>
+<%= @user.inspect %>
+<br>
+<br>
+<%= @student.inspect %>
