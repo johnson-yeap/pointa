@@ -50,3 +50,9 @@ group :development, :test do
 	gem 'capybara'
 	gem 'factory_girl_rails'
 end
+
+# Access Control List (ACL)	
+gem 'cancancan', '~> 1.9'
+
+# Authentication 
+gem 'devise'
