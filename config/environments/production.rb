@@ -1,4 +1,7 @@
 Rails.application.configure do
+  # Action Mailer
+  config.action_mailer.default_url_options = { :host => 'http://pointa.herokuapp.com/' }
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
