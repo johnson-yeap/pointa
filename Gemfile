@@ -41,6 +41,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 gem 'bootstrap-sass', '~> 3.3.0'
 gem 'autoprefixer-rails'
 
+# Font Awesome
+gem 'font-awesome-rails'
+
 group :production do
 	gem 'rails_12factor'
 end
