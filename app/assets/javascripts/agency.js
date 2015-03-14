@@ -13,7 +13,6 @@ window.onload = function() {
         }, 1500, 'easeInOutExpo');
         event.preventDefault();
     });
-};
 
 // Highlight the top nav as scrolling occurs
 $('body').scrollspy({
@@ -24,3 +23,4 @@ $('body').scrollspy({
 $('.navbar-collapse ul li a').click(function() {
     $('.navbar-toggle:visible').click();
 });
+};
