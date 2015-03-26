@@ -56,8 +56,8 @@ group :development, :test do
 	gem 'factory_girl_rails'
 end
 
-# Access Control List (ACL)	
-gem 'cancancan', '~> 1.9'
+# Access Control List (ACL)/ Authorization
+gem 'cancancan', '~> 1.10'
 
 # Authentication 
 gem 'devise'
