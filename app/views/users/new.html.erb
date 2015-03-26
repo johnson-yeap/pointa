@@ -1,6 +1,6 @@
 <h1>Sign Up</h1>
 
-<%= form_for(@user) do |f| %>
+<%= form_for @user do |f| %>
 
 <table>
     <tr>
@@ -19,6 +19,27 @@
         <td><%= f.label :password_confirmation %></td>
         <td><%= f.text_field :password_confirmation %></td>
     </tr>
+
+
+
+    <!-- student details -->
+    <%= f.fields_for :student do |student| %>
+        <tr>
+            <td><%= student.label :name %></td>
+            <td><%= student.text_field :name %></td>
+        </tr>
+        <tr>
+            <td><%= student.label :matric_no %></td>
+            <td><%= student.text_field :matric_no %></td>
+        </tr>
+        <tr>
+            <td><%= student.label :department_id %></td>
+            <td><%= student.text_field :department_id %></td>
+        </tr>
+    <% end %>
+
+
+
     <tr>
         <td></td>
         <td><%= f.submit "Sign Up" %></td>
@@ -26,3 +47,8 @@
 </table>
 
 <% end %>
+
+
+<%= @user.inspect %>
+<br>
+<%= @user.student.inspect %>   
