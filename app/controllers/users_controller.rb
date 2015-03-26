@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     end
 
     def dashboard
-        @student = Student.find_by(user_id: params[:id])
+        @student = Student.find_by(current_user)
     end
 
     def fulfillment
