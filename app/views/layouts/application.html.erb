@@ -65,7 +65,7 @@
     <p class="alert"><%= alert %></p>
     <div class="row">
       <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, class: "alert alert-#{name}" %>
+        <%= content_tag :div, msg, class: "alert alert-#{name} alert-block" %>
       <% end %>
     </div>
   </div>
