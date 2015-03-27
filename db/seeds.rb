@@ -10,5 +10,10 @@
 User.create(username: "johnson_yeap", email: "johnson.yeap91@gmail.com", password: "johnson9241991", password_confirmation: "johnson9241991", student_id: 1)
 Student.create(name: "Johnson Yeap", matric_no: "WEK110064", department_id: 1)
 
-Department.create(name: "Software Engineering", min_ch: 126, bachelor_id: 1)
 Bachelor.create(name: "Bachelor of Computer Science")
+
+Department.create(name: "Software Engineering", min_ch: 126, bachelor_id: 1)
+Department.create(name: "Computer System and Networking", min_ch: 125, bachelor_id: 1)
+Department.create(name: "Artificial Intelligence", min_ch: 125, bachelor_id: 1)
+Department.create(name: "Management Information System", min_ch: 125, bachelor_id: 1)
+		
