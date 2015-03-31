@@ -8,10 +8,10 @@
 
 
 User.create(username: "johnson_yeap", email: "johnson.yeap91@gmail.com", password: "johnson9241991", password_confirmation: "johnson9241991", student_id: 1, confirmed_at: "2015-03-28 11:23:05")
-User.create(username: "johnson_baby", email: "johnson_yeap@hotmail.com", password: "johnson9241991", password_confirmation: "johnson9241991", student_id: 2)
+User.create(username: "admin", email: "johnson_yeap@hotmail.com", password: "admin", password_confirmation: "admin", student_id: 2, confirmed_at: "2015-03-28 11:23:05")
 
 Student.create(name: "Johnson Yeap", matric_no: "WEK110064", department_id: 1)
-Student.create(name: "Johnson Baby", matric_no: "WEK110064", department_id: 1)
+Student.create(name: "Admin", matric_no: "Admin", department_id: 1)
 
 # Enrollments
 Enrollment.create(student_id: 1, course_id: 1)
