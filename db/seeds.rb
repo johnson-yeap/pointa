@@ -17,9 +17,6 @@ Student.create(name: "Admin", matric_no: "Admin", department_id: 1)
 Enrollment.create(student_id: 1, course_id: 1)
 Enrollment.create(student_id: 1, course_id: 2)
 
-Enrollment.create(student_id: 2, course_id: 1)
-Enrollment.create(student_id: 2, course_id: 2)
-
 # Bachelors
 Bachelor.create(name: "Bachelor of Computer Science")
 
