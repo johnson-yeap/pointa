@@ -61,3 +61,5 @@ gem 'cancancan', '~> 1.10'
 
 # Authentication 
 gem 'devise'
+
+gem 'nested_form'
