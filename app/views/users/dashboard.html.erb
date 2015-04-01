@@ -20,34 +20,31 @@ Current CGPA :
 <br>
 <br> 
 
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Course Code</th>
+                <th>Course Name</th>
+                <th>Credit Hours</th>
+                <th>Grade</th>
+                <th>Grade Points</th>
+            </tr>
+        </thead>
+        <tbody>
+        	<% @enrollments.each_with_index do |e, i| %>
+        	<tr class="success">
+        		<td><%= i+1 %></td>
+        		<td><%= e.course.course_code %></td>
+        		<td><%= e.course.name %></td>
+        		<td><%= e.course.ch %></td>
+        		<td><!-- grade --></td>
+        		<td><!-- grade points --></td>
+        	</tr>
+        	<% end %>
+        </tbody>
+    </table>
+</div>
+
 <%= link_to 'New Enrollment', new_enrollment_path %>
-
-<!-- <br>
-<br>
-Student Name : <%= #@student.name %>
-<br>
-Student Matric No : <%= #@student.matric_no %>
-<br>
-Programme : <%= #@student.department.bachelor.name %>
-<br>
-Student Department : <%= #@student.department.name %>
-<br>	
-Current CGPA
-<br>
-<br>
-<br>  -->
-<!-- 
-List of Semesters
-
-<br>
-<br>
-Params
-<br>
-<%= #params %>
-<br>
-User
-<br>
-<%= #@user.inspect %>
-<br>
-<br>
-<%= #@student.inspect %> -->

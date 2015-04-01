@@ -12,7 +12,7 @@ class StudentsController < ApplicationController
 		# update_attributes - update multiple attribute of single object and also pass model based validation.
 		if @student.update_attributes(student_params)
 			flash[:success] = "You have successfully enrolled."
-			redirect_to new_enrollment_path
+			redirect_to dashboard_user_path(current_user.id)
 		else
 	       	# fail
 	        flash[:danger] = "Please try again."
@@ -22,6 +22,7 @@ class StudentsController < ApplicationController
 
 	private
         def student_params
-            params.require(:student).permit(:id, :name, :matric_no, :department_id, enrollments_attributes: [:student_id, :course_id])
+        	# include :id in enrollments_attributes prevents duplicates in nested form
+            params.require(:student).permit(:id, :name, :matric_no, :department_id, enrollments_attributes: [:id, :student_id, :course_id])
         end
 end

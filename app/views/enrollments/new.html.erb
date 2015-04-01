@@ -18,12 +18,16 @@ Student: <%= current_user.student.inspect %>
 <%= nested_form_for(@current_student, html: { class: 'form-horizontal' }) do |f| %>
   
   <%= f.fields_for :enrollments do |e| %>
-  	<div class="form-group">
-      <%= e.label :course_id, for: :course_id, class: 'col-xs-3 control-label' %>
-        <div class="col-xs-9">
-          <%= e.collection_select :course_id, Course.all, :id, :name, {prompt: "Select your Course"}, {class: 'form-control'} %>
-        </div>
-    </div>
+
+    <!-- show only if the record not exists in the database -->
+    <% if !e.object.persisted? %>
+    	<div class="form-group">
+        <%= e.label :course_id, for: :course_id, class: 'col-xs-3 control-label' %>
+          <div class="col-xs-9">
+            <%= e.collection_select :course_id, Course.all, :id, :name, {prompt: "Select your Course"}, {class: 'form-control'} %>
+          </div>
+      </div>
+    <% end %>
   <% end %>
   
   <%= f.link_to_add 'Add Course', :enrollments, class: "col-xs-9 col-xs-offset-3" %>

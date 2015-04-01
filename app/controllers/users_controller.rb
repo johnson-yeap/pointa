@@ -26,6 +26,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         student_id = @user.student_id
         @student = Student.find(student_id)
+        @enrollments = @student.enrollments
     end
 
     def fulfillment

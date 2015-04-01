@@ -4,12 +4,12 @@ class EnrollmentsController < ApplicationController
 
   def new
     @current_student = current_user.student
-  	@enrollments =  @current_student.enrollments.build
+  	#@enrollments =  @current_student.enrollments.build
   end
 
   def create
     current_student = current_user.student
-    @enrollments =  current_student.enrollments.build(enrollment_params)
+    #@enrollments =  current_student.enrollments.build(enrollment_params)
       if @enrollments.save
           flash[:success] = "You have successfully enrolled."
           redirect_to new_enrollment_path

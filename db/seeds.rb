@@ -17,6 +17,28 @@ Student.create(name: "Admin", matric_no: "Admin", department_id: 1)
 Enrollment.create(student_id: 1, course_id: 1)
 Enrollment.create(student_id: 1, course_id: 2)
 
+# AcademicYears
+AcademicYear.create(name: "2011/2012")
+AcademicYear.create(name: "2012/2013")
+AcademicYear.create(name: "2013/2014")
+AcademicYear.create(name: "2014/2015")
+
+# Semesters
+Semester.create(name: "Semester 1")
+Semester.create(name: "Semester 2")
+
+# AcademicYearSemester
+# Binding Semesters to AcademicYear
+AcademicYearSemester.create(academic_year_id: 4, semester_id: 2)	
+
+# Grades
+Grade.create(name: "A", points: 4.00)
+Grade.create(name: "B+", points: 3.70)
+Grade.create(name: "B", points: 3.00)
+Grade.create(name: "B-", points: 2.70)
+Grade.create(name: "C+", points: 2.30)
+Grade.create(name: "C", points: 2.00)
+
 # Bachelors
 Bachelor.create(name: "Bachelor of Computer Science")
 

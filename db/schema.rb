@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328173142) do
+ActiveRecord::Schema.define(version: 20150401090537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "academic_year_semesters", force: true do |t|
+    t.integer  "academic_year_id"
+    t.integer  "semester_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "academic_year_semesters", ["academic_year_id"], name: "index_academic_year_semesters_on_academic_year_id", using: :btree
+  add_index "academic_year_semesters", ["semester_id"], name: "index_academic_year_semesters_on_semester_id", using: :btree
+
+  create_table "academic_years", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "bachelors", force: true do |t|
     t.string   "name"
@@ -52,6 +68,19 @@ ActiveRecord::Schema.define(version: 20150328173142) do
 
   add_index "enrollments", ["course_id"], name: "index_enrollments_on_course_id", using: :btree
   add_index "enrollments", ["student_id"], name: "index_enrollments_on_student_id", using: :btree
+
+  create_table "grades", force: true do |t|
+    t.string   "name"
+    t.decimal  "points",     precision: 4, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "semesters", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "students", force: true do |t|
     t.string   "name"
