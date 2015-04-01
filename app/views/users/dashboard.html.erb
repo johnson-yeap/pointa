@@ -39,8 +39,8 @@ Current CGPA :
         		<td><%= e.course.course_code %></td>
         		<td><%= e.course.name %></td>
         		<td><%= e.course.ch %></td>
-        		<td><!-- grade --></td>
-        		<td><!-- grade points --></td>
+        		<td><%= e.grade.name %></td>
+        		<td><%= e.grade.points %></td>
         	</tr>
         	<% end %>
         </tbody>

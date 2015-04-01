@@ -14,8 +14,8 @@ Student.create(name: "Johnson Yeap", matric_no: "WEK110064", department_id: 1)
 Student.create(name: "Admin", matric_no: "Admin", department_id: 1)
 
 # Enrollments
-Enrollment.create(student_id: 1, course_id: 1)
-Enrollment.create(student_id: 1, course_id: 2)
+Enrollment.create(student_id: 1, course_id: 1, grade_id: 1)
+Enrollment.create(student_id: 1, course_id: 2, grade_id: 2)
 
 # AcademicYears
 AcademicYear.create(name: "2011/2012")
@@ -33,7 +33,8 @@ AcademicYearSemester.create(academic_year_id: 4, semester_id: 2)
 
 # Grades
 Grade.create(name: "A", points: 4.00)
-Grade.create(name: "B+", points: 3.70)
+Grade.create(name: "A-", points: 3.70)
+Grade.create(name: "B+", points: 3.30)
 Grade.create(name: "B", points: 3.00)
 Grade.create(name: "B-", points: 2.70)
 Grade.create(name: "C+", points: 2.30)
