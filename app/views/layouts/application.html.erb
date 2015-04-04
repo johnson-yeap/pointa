@@ -32,8 +32,12 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to 'Fulfillment', root_path %></li>
-          <li><%= link_to 'Enrollment', root_path %></li>
+          <% if user_signed_in? %>
+          <li><%= link_to 'Fulfillment', dashboard_user_path(current_user.id) %></li>
+          <!-- else -->
+          <!-- redirect_to fulfillment section on the landing page/ something else -->
+          <% end %>
+          <li><%= link_to 'Enrollment', new_enrollment_path %></li>
           <li><%= link_to 'Course', root_path %></li>
           <li><%= link_to 'Analysis', root_path %></li>
           <% if user_signed_in? %>

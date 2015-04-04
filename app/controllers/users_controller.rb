@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    before_action :authenticate_user!
+    load_and_authorize_resource
 
 	def index
 	end
@@ -11,7 +13,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         
         if @user.save
-            # success
+               # success
             UserNotifier.signup_email(@user).deliver
             flash[:success] = "Your account has been successfully created"
             redirect_to dashboard_user_path(@user.id)
@@ -23,10 +25,12 @@ class UsersController < ApplicationController
     end
 
     def dashboard
-        @user = User.find(params[:id])
-        student_id = @user.student_id
-        @student = Student.find(student_id)
-        @enrollments = @student.enrollments
+        @student_id = @user.student_id
+        @student = Student.find(@student_id)
+        @academic_sessions = AcademicYearSemester.order('id DESC')
+        # find_by method finds the first record, hence not applicable
+        # @last_completed_enrollment = Enrollment.where(student_id: student_id, completed: true).last
+        # @enrollments = Enrollment.all.where(academic_year_semester_id: 1, student_id: student_id, completed: true)
     end
 
     def fulfillment

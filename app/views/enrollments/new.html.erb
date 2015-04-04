@@ -1,4 +1,4 @@
-New Enrollment
+<b>New Enrollment</b>
 <br>
 <br>
 
@@ -10,21 +10,43 @@ New Enrollment: <%= @enrollment.inspect %>
 
 <br>
 <br>
-Student: <%= current_user.student.inspect %>
+<!-- Student: <%#= current_user.student.inspect %> -->
 
 <br>
 <br>
 
-<%= nested_form_for(@current_student, html: { class: 'form-horizontal' }) do |f| %>
+<%= nested_form_for(@academic_session, html: { class: 'form-horizontal' }) do |f| %>
+  
+  <div class="form-group">
+    <%= f.label :academic_year_id, for: :academic_year_id, class: 'col-xs-3 control-label' %>
+    <div class="col-xs-9">
+      <%= f.collection_select :academic_year_id, AcademicYear.all, :id, :name, {prompt: "Select your Academic Year"}, {class: 'form-control'} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :semester_id, for: :semester_id, class: 'col-xs-3 control-label' %>
+    <div class="col-xs-9">
+      <%= f.collection_select :semester_id, Semester.all, :id, :name, {prompt: "Select your Semester"}, {class: 'form-control'} %>
+    </div>
+  </div>
   
   <%= f.fields_for :enrollments do |e| %>
+    <%= e.hidden_field :student_id, :value => @current_student.id %>
 
     <!-- show only if the record not exists in the database -->
     <% if !e.object.persisted? %>
-    	<div class="form-group">
+      <div class="form-group">
         <%= e.label :course_id, for: :course_id, class: 'col-xs-3 control-label' %>
           <div class="col-xs-9">
             <%= e.collection_select :course_id, Course.all, :id, :name, {prompt: "Select your Course"}, {class: 'form-control'} %>
+          </div>
+      </div>
+
+      <div class="form-group">
+        <%= e.label :grade_id, for: :grade_id, class: 'col-xs-3 control-label' %>
+          <div class="col-xs-9">
+            <%= e.collection_select :grade_id, Grade.all, :id, :name, {prompt: "Select your Grade"}, {class: 'form-control'} %>
           </div>
       </div>
     <% end %>
@@ -32,7 +54,7 @@ Student: <%= current_user.student.inspect %>
   
   <%= f.link_to_add 'Add Course', :enrollments, class: "col-xs-9 col-xs-offset-3" %>
 
-	<div class="form-group">
+  <div class="form-group">
     <div class="col-xs-9 col-xs-offset-3">
       <%= f.submit "Enroll Now", class: 'btn btn-primary' %>
     </div>
@@ -43,6 +65,42 @@ Student: <%= current_user.student.inspect %>
       <%= f.submit "Predict Now", class: 'btn btn-primary' %>
     </div>
   </div>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%= nested_form_for(@current_student, html: { class: 'form-horizontal' }) do |f| %>
+  
+  <%= f.fields_for :enrollments do |e| %>
+
+    <!-- show only if the record not exists in the database -->
+    <% if !e.object.persisted? %>
+      <div class="form-group">
+        <%= e.label :course_id, for: :course_id, class: 'col-xs-3 control-label' %>
+          <div class="col-xs-9">
+            <%= e.collection_select :course_id, Course.all, :id, :name, {prompt: "Select your Course"}, {class: 'form-control'} %>
+          </div>
+      </div>
+    <% end %>
+  <% end %>
 
 <% end %>
 

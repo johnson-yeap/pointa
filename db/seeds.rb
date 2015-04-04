@@ -7,15 +7,16 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-User.create(username: "johnson_yeap", email: "johnson.yeap91@gmail.com", password: "johnson9241991", password_confirmation: "johnson9241991", student_id: 1, confirmed_at: "2015-03-28 11:23:05")
+User.create(username: "johnson_yeap", email: "johnson.yeap91@gmail.com", password: "um9241991", password_confirmation: "um9241991", student_id: 1, confirmed_at: "2015-03-28 11:23:05")
 User.create(username: "admin123", email: "johnson_yeap@hotmail.com", password: "admin123", password_confirmation: "admin123", student_id: 2, confirmed_at: "2015-03-28 11:23:05")
 
 Student.create(name: "Johnson Yeap", matric_no: "WEK110064", department_id: 1)
 Student.create(name: "Admin", matric_no: "Admin", department_id: 1)
 
 # Enrollments
-Enrollment.create(student_id: 1, course_id: 1, grade_id: 1)
-Enrollment.create(student_id: 1, course_id: 2, grade_id: 2)
+Enrollment.create(student_id: 2, course_id: 1, grade_id: 1, academic_year_semester_id: 1, completed: true)
+Enrollment.create(student_id: 2, course_id: 2, grade_id: 2, academic_year_semester_id: 1, completed: false)
+Enrollment.create(student_id: 2, course_id: 2, grade_id: 2, academic_year_semester_id: 2, completed: true)
 
 # AcademicYears
 AcademicYear.create(name: "2011/2012")
@@ -29,7 +30,15 @@ Semester.create(name: "Semester 2")
 
 # AcademicYearSemester
 # Binding Semesters to AcademicYear
-AcademicYearSemester.create(academic_year_id: 4, semester_id: 2)	
+AcademicYearSemester.create(academic_year_id: 1, semester_id: 1)	
+AcademicYearSemester.create(academic_year_id: 1, semester_id: 2)
+AcademicYearSemester.create(academic_year_id: 2, semester_id: 1)	
+AcademicYearSemester.create(academic_year_id: 2, semester_id: 2)
+AcademicYearSemester.create(academic_year_id: 3, semester_id: 1)	
+AcademicYearSemester.create(academic_year_id: 3, semester_id: 2)
+AcademicYearSemester.create(academic_year_id: 4, semester_id: 1)	
+AcademicYearSemester.create(academic_year_id: 4, semester_id: 2)
+
 
 # Grades
 Grade.create(name: "A", points: 4.00)
@@ -55,7 +64,7 @@ Course.create(name: "Computing Mathematics I", course_code: "WXES1112", ch: 3, d
 Course.create(name: "Principles of Information Systems", course_code: "WMES1105", ch: 3, department_id: 1)
 Course.create(name: "Computer Systems & Organization", course_code: "WXES1109", ch: 3, department_id: 1)
 Course.create(name: "Programming I", course_code: "WXES1116", ch: 5, department_id: 1)
-Course.create(name: "TITAS", course_code: "GXEX1410", ch: 2, department_id: 1)
+Course.create(name: "Islamic And Asian Civilization", course_code: "GXEX1414", ch: 2, department_id: 1)
 Course.create(name: "Introduction To Malaysia", course_code: "GXEX1413", ch: 2, department_id: 1)
 Course.create(name: "Information Skills", course_code: "GXEX1401", ch: 1, department_id: 1)
 Course.create(name: "Data Structure", course_code: "WXES1117", ch: 5, department_id: 1)
@@ -88,3 +97,44 @@ Course.create(name: "Automated Theory", course_code: "WKES3403", ch: 3, departme
 Course.create(name: "Fundamentals of Cognitive Science", course_code: "WAES2107", ch: 3, department_id: 1)
 Course.create(name: "Database Administration", course_code: "WMES2271", ch: 5, department_id: 1)
 Course.create(name: "Advanced Network Technology", course_code: "WRES2203", ch: 4, department_id: 1)
+Course.create(name: "Speaking Skills in English", course_code: "GTEE1109", ch: 3)
+Course.create(name: "Writing Skills in English", course_code: "GTEE1109", ch: 3)
+
+# WEK110064
+Enrollment.create(student_id: 1, course_id: 1, grade_id: 1, academic_year_semester_id: 1, completed: true)
+Enrollment.create(student_id: 1, course_id: 3, grade_id: 4, academic_year_semester_id: 1, completed: true)
+Enrollment.create(student_id: 1, course_id: 4, grade_id: 7, academic_year_semester_id: 1, completed: true)
+Enrollment.create(student_id: 1, course_id: 2, grade_id: 1, academic_year_semester_id: 1, completed: true)
+Enrollment.create(student_id: 1, course_id: 5, grade_id: 7, academic_year_semester_id: 1, completed: true)
+
+# exclude GXEX1401
+Enrollment.create(student_id: 1, course_id: 39, grade_id: 2, academic_year_semester_id: 2, completed: true)
+Enrollment.create(student_id: 1, course_id: 10, grade_id: 2, academic_year_semester_id: 2, completed: true)
+Enrollment.create(student_id: 1, course_id: 11, grade_id: 2, academic_year_semester_id: 2, completed: true)
+Enrollment.create(student_id: 1, course_id: 12, grade_id: 4, academic_year_semester_id: 2, completed: true)
+Enrollment.create(student_id: 1, course_id: 9, grade_id: 2, academic_year_semester_id: 2, completed: true)
+Enrollment.create(student_id: 1, course_id: 6, grade_id: 1, academic_year_semester_id: 2, completed: true)
+
+Enrollment.create(student_id: 1, course_id: 40, grade_id: 3, academic_year_semester_id: 3, completed: true)
+Enrollment.create(student_id: 1, course_id: 23, grade_id: 1, academic_year_semester_id: 3, completed: true)
+Enrollment.create(student_id: 1, course_id: 16, grade_id: 2, academic_year_semester_id: 3, completed: true)
+Enrollment.create(student_id: 1, course_id: 14, grade_id: 1, academic_year_semester_id: 3, completed: true)
+Enrollment.create(student_id: 1, course_id: 13, grade_id: 1, academic_year_semester_id: 3, completed: true)
+Enrollment.create(student_id: 1, course_id: 15, grade_id: 3, academic_year_semester_id: 3, completed: true)
+
+# exclude GNEK1037
+Enrollment.create(student_id: 1, course_id: 17, grade_id: 3, academic_year_semester_id: 4, completed: true)
+Enrollment.create(student_id: 1, course_id: 18, grade_id: 4, academic_year_semester_id: 4, completed: true)
+Enrollment.create(student_id: 1, course_id: 19, grade_id: 1, academic_year_semester_id: 4, completed: true)
+Enrollment.create(student_id: 1, course_id: 20, grade_id: 2, academic_year_semester_id: 4, completed: true)
+Enrollment.create(student_id: 1, course_id: 21, grade_id: 3, academic_year_semester_id: 4, completed: true)
+
+Enrollment.create(student_id: 1, course_id: 22, grade_id: 1, academic_year_semester_id: 5, completed: true)
+
+# A+ is treated as A for the time being
+Enrollment.create(student_id: 1, course_id: 32, grade_id: 2, academic_year_semester_id: 6, completed: true)
+Enrollment.create(student_id: 1, course_id: 29, grade_id: 1, academic_year_semester_id: 6, completed: true)
+Enrollment.create(student_id: 1, course_id: 33, grade_id: 3, academic_year_semester_id: 6, completed: true)
+Enrollment.create(student_id: 1, course_id: 31, grade_id: 1, academic_year_semester_id: 6, completed: true)
+Enrollment.create(student_id: 1, course_id: 34, grade_id: 5, academic_year_semester_id: 6, completed: true)
+Enrollment.create(student_id: 1, course_id: 24, grade_id: 1, academic_year_semester_id: 6, completed: true)

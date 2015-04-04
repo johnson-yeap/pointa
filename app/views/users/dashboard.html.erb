@@ -1,11 +1,10 @@
-Dashboard
+<b>Dashboard</b>
 <br>
-<%= @user.inspect %>
+<%#= @user.inspect %>
 <br>
-<%= @student.inspect %>
+<%#= @student.inspect %>
 
-<br>
-<br>
+
 <br>
 Student Name : <%= @student.name %>
 <br>
@@ -18,33 +17,104 @@ Student Department : <%= @student.department.name %>
 Current CGPA :
 <br>
 <br>
-<br> 
-
-<div class="table-responsive">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>No</th>
-                <th>Course Code</th>
-                <th>Course Name</th>
-                <th>Credit Hours</th>
-                <th>Grade</th>
-                <th>Grade Points</th>
-            </tr>
-        </thead>
-        <tbody>
-        	<% @enrollments.each_with_index do |e, i| %>
-        	<tr class="success">
-        		<td><%= i+1 %></td>
-        		<td><%= e.course.course_code %></td>
-        		<td><%= e.course.name %></td>
-        		<td><%= e.course.ch %></td>
-        		<td><%= e.grade.name %></td>
-        		<td><%= e.grade.points %></td>
-        	</tr>
-        	<% end %>
-        </tbody>
-    </table>
-</div>
 
 <%= link_to 'New Enrollment', new_enrollment_path %>
+<br>
+<br>
+
+<%#= @last_completed_enrollment.inspect %>
+
+<!-- Previous Semester : <%#= @last_completed_enrollment.academic_year_semester.academic_year.name %>,  <%#= @last_completed_enrollment.academic_year_semester.semester.name %> -->
+
+<% @academic_sessions.each_with_index do |session, index| %>
+    <% @enrollments = Enrollment.all.where(academic_year_semester_id: session.id, student_id: @student_id, completed: false) %>
+
+    <% if index == 0 %>
+        <!-- if completed = FALSE -->
+        <!-- # show only if the enrollments are NOT completed-->
+        <div><b>Current Semester</b></div>
+        <br>
+    <% end %>
+
+    <!-- show only if session has enrollments as well as both academic_year and semester -->
+    <% if session.academic_year_id != nil && session.semester_id != nil && @enrollments != [] %>
+        <%= session.academic_year.name %>, <%= session.semester.name %>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Course Code</th>
+                            <th>Course Name</th>
+                            <th>Credit Hours</th>
+                            <th>Grade</th>
+                            <th>Grade Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% @enrollments.each_with_index do |e, i| %>
+                        <tr class="success">
+                            <td><%= i+1 %></td>
+                            <td><%= e.course.course_code %></td>
+                            <td><%= e.course.name %></td>
+                            <td><%= e.course.ch %></td>
+                            <td><%= e.grade.name %></td>
+                            <td><%= e.grade.points %></td>
+                        </tr>
+                        <% end %>
+                    </tbody>
+                </table>
+            </div>
+    <% end %>
+<% end %>
+
+
+<% @academic_sessions.each_with_index do |session, index| %>
+    <% @enrollments = Enrollment.all.where(academic_year_semester_id: session.id, student_id: @student_id, completed: true) %>
+
+    <% if index == 0 %>
+        <!-- if completed = TRUE -->
+        <!-- # show only if the enrollments are completed-->
+        <div><b>Previous Semesters</b></div>
+        <br>
+    <% end %>
+
+    <!-- show only if session has enrollments as well as both academic_year and semester -->
+    <% if session.academic_year_id != nil && session.semester_id != nil && @enrollments != [] %>
+        <%= session.academic_year.name %>, <%= session.semester.name %>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Course Code</th>
+                            <th>Course Name</th>
+                            <th>Credit Hours</th>
+                            <th>Grade</th>
+                            <th>Grade Points</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    	<% @enrollments.each_with_index do |e, i| %>
+                    	<tr class="success">
+                    		<td><%= i+1 %></td>
+                    		<td><%= e.course.course_code %></td>
+                    		<td><%= e.course.name %></td>
+                    		<td><%= e.course.ch %></td>
+                    		<td><%= e.grade.name %></td>
+                    		<td><%= e.grade.points %></td>
+                    	</tr>
+                        <% end %>
+                        <tr class="info">
+                            <td colspan="3"><div class="text-right"><strong>Total</strong></div></td>
+                            <td>Total ch</td>
+                            <td></td>
+                            <td>Total GPA</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    <% end %>
+<% end %>
