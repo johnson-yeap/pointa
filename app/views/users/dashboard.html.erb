@@ -27,7 +27,7 @@ Current CGPA :
 <!-- Previous Semester : <%#= @last_completed_enrollment.academic_year_semester.academic_year.name %>,  <%#= @last_completed_enrollment.academic_year_semester.semester.name %> -->
 
 <% @academic_sessions.each_with_index do |session, index| %>
-    <% @enrollments = Enrollment.all.where(academic_year_semester_id: session.id, student_id: @student_id, completed: false) %>
+    <% @incompleted_enrollments = Enrollment.all.where(academic_year_semester_id: session.id, student_id: @student_id, completed: false, grade_id: nil) %>
 
     <% if index == 0 %>
         <!-- if completed = FALSE -->
@@ -37,7 +37,7 @@ Current CGPA :
     <% end %>
 
     <!-- show only if session has enrollments as well as both academic_year and semester -->
-    <% if session.academic_year_id != nil && session.semester_id != nil && @enrollments != [] %>
+    <% if session.academic_year_id != nil && session.semester_id != nil && @incompleted_enrollments != [] %>
         <%= session.academic_year.name %>, <%= session.semester.name %>
 
             <div class="table-responsive">
@@ -53,14 +53,14 @@ Current CGPA :
                         </tr>
                     </thead>
                     <tbody>
-                        <% @enrollments.each_with_index do |e, i| %>
-                        <tr class="success">
+                        <% @incompleted_enrollments.each_with_index do |e, i| %>
+                        <tr class="warning">
                             <td><%= i+1 %></td>
                             <td><%= e.course.course_code %></td>
                             <td><%= e.course.name %></td>
                             <td><%= e.course.ch %></td>
-                            <td><%= e.grade.name %></td>
-                            <td><%= e.grade.points %></td>
+                            <td><% if e.grade != nil %><%= e.grade.name %><% end %></td>
+                            <td><% if e.grade != nil %><%= e.grade.points %><% end %></td>
                         </tr>
                         <% end %>
                     </tbody>
@@ -71,7 +71,7 @@ Current CGPA :
 
 
 <% @academic_sessions.each_with_index do |session, index| %>
-    <% @enrollments = Enrollment.all.where(academic_year_semester_id: session.id, student_id: @student_id, completed: true) %>
+    <% @completed_enrollments = Enrollment.all.where(academic_year_semester_id: session.id, student_id: @student_id, completed: true) %>
 
     <% if index == 0 %>
         <!-- if completed = TRUE -->
@@ -81,7 +81,7 @@ Current CGPA :
     <% end %>
 
     <!-- show only if session has enrollments as well as both academic_year and semester -->
-    <% if session.academic_year_id != nil && session.semester_id != nil && @enrollments != [] %>
+    <% if session.academic_year_id != nil && session.semester_id != nil && @completed_enrollments != [] %>
         <%= session.academic_year.name %>, <%= session.semester.name %>
 
             <div class="table-responsive">
@@ -97,7 +97,7 @@ Current CGPA :
                         </tr>
                     </thead>
                     <tbody>
-                    	<% @enrollments.each_with_index do |e, i| %>
+                    	<% @completed_enrollments.each_with_index do |e, i| %>
                     	<tr class="success">
                     		<td><%= i+1 %></td>
                     		<td><%= e.course.course_code %></td>

@@ -6,12 +6,11 @@ class EnrollmentsController < ApplicationController
 
   def new
     @current_student = current_user.student
-    @academic_session = AcademicYearSemester.new
+    @incomplete_academic_sessions = AcademicYearSemester.where.not(id: @current_student.academic_year_semesters)
   	# @enrollments =  @current_student.enrollments.build
   end
 
   def create
-    current_student = current_user.student
     # @enrollments =  current_student.enrollments.build(enrollment_params)
       if @enrollments.save
           flash[:success] = "You have successfully enrolled."
@@ -25,7 +24,7 @@ class EnrollmentsController < ApplicationController
 
   private
     def enrollment_params
-        params.require(:enrollment).permit(:student_id, :course_id)
+        params.require(:enrollment).permit(:student_id, :course_id, :grade_id, :academic_year_semester_id)
     end
 
 end

@@ -13,11 +13,6 @@ User.create(username: "admin123", email: "johnson_yeap@hotmail.com", password: "
 Student.create(name: "Johnson Yeap", matric_no: "WEK110064", department_id: 1)
 Student.create(name: "Admin", matric_no: "Admin", department_id: 1)
 
-# Enrollments
-Enrollment.create(student_id: 2, course_id: 1, grade_id: 1, academic_year_semester_id: 1, completed: true)
-Enrollment.create(student_id: 2, course_id: 2, grade_id: 2, academic_year_semester_id: 1, completed: false)
-Enrollment.create(student_id: 2, course_id: 2, grade_id: 2, academic_year_semester_id: 2, completed: true)
-
 # AcademicYears
 AcademicYear.create(name: "2011/2012")
 AcademicYear.create(name: "2012/2013")
@@ -132,9 +127,15 @@ Enrollment.create(student_id: 1, course_id: 21, grade_id: 3, academic_year_semes
 Enrollment.create(student_id: 1, course_id: 22, grade_id: 1, academic_year_semester_id: 5, completed: true)
 
 # A+ is treated as A for the time being
-Enrollment.create(student_id: 1, course_id: 32, grade_id: 2, academic_year_semester_id: 6, completed: true)
-Enrollment.create(student_id: 1, course_id: 29, grade_id: 1, academic_year_semester_id: 6, completed: true)
-Enrollment.create(student_id: 1, course_id: 33, grade_id: 3, academic_year_semester_id: 6, completed: true)
-Enrollment.create(student_id: 1, course_id: 31, grade_id: 1, academic_year_semester_id: 6, completed: true)
-Enrollment.create(student_id: 1, course_id: 34, grade_id: 5, academic_year_semester_id: 6, completed: true)
-Enrollment.create(student_id: 1, course_id: 24, grade_id: 1, academic_year_semester_id: 6, completed: true)
+Enrollment.create(student_id: 1, course_id: 32, grade_id: 2, academic_year_semester_id: 7, completed: true)
+Enrollment.create(student_id: 1, course_id: 29, grade_id: 1, academic_year_semester_id: 7, completed: true)
+Enrollment.create(student_id: 1, course_id: 33, grade_id: 3, academic_year_semester_id: 7, completed: true)
+Enrollment.create(student_id: 1, course_id: 31, grade_id: 1, academic_year_semester_id: 7, completed: true)
+Enrollment.create(student_id: 1, course_id: 34, grade_id: 5, academic_year_semester_id: 7, completed: true)
+Enrollment.create(student_id: 1, course_id: 24, grade_id: 1, academic_year_semester_id: 7, completed: true)
+
+# Test
+Enrollment.create(student_id: 2, course_id: 24, grade_id: 1, academic_year_semester_id: 7, completed: true)
+Enrollment.create(student_id: 2, course_id: 1, grade_id: 1, academic_year_semester_id: 1, completed: true)
+Enrollment.create(student_id: 2, course_id: 2, grade_id: 2, academic_year_semester_id: 1, completed: false)
+Enrollment.create(student_id: 2, course_id: 3, grade_id: 2, academic_year_semester_id: 2, completed: true)
