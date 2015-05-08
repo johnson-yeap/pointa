@@ -18,7 +18,7 @@
       <div class="form-group">
         <%= e.label :course_id, for: :course_id, class: 'col-xs-3 control-label' %>
           <div class="col-xs-9">
-            <%= e.collection_select :course_id, Course.all, :id, :name, {prompt: "Select your Course"}, {class: 'form-control'} %>
+            <%= e.collection_select :course_id, @incomplete_courses, :id, :name, {prompt: "Select your Course"}, {class: 'form-control'} %>
           </div>
       </div>
 

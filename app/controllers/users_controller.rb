@@ -25,9 +25,9 @@ class UsersController < ApplicationController
     end
 
     def dashboard
-        @student_id = @user.student_id
-        @student = Student.find(@student_id)
-        @academic_sessions = AcademicYearSemester.order('id DESC')
+        @current_student = current_user.student
+        @academic_sessions = @current_student.academic_year_semesters.order('id DESC')
+        @course_components = CourseComponent.all
         # find_by method finds the first record, hence not applicable
         # @last_completed_enrollment = Enrollment.where(student_id: student_id, completed: true).last
         # @enrollments = Enrollment.all.where(academic_year_semester_id: 1, student_id: student_id, completed: true)

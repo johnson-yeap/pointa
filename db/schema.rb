@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150401181401) do
+ActiveRecord::Schema.define(version: 20150412164731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 20150401181401) do
     t.datetime "updated_at"
   end
 
+  create_table "course_components", force: true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "courses", force: true do |t|
     t.string   "name"
     t.integer  "ch"
@@ -45,8 +52,10 @@ ActiveRecord::Schema.define(version: 20150401181401) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "course_code"
+    t.integer  "course_component_id"
   end
 
+  add_index "courses", ["course_component_id"], name: "index_courses_on_course_component_id", using: :btree
   add_index "courses", ["department_id"], name: "index_courses_on_department_id", using: :btree
 
   create_table "departments", force: true do |t|
@@ -76,7 +85,7 @@ ActiveRecord::Schema.define(version: 20150401181401) do
 
   create_table "grades", force: true do |t|
     t.string   "name"
-    t.decimal  "points",     precision: 4, scale: 2
+    t.decimal  "points",     precision: 3, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -93,6 +102,7 @@ ActiveRecord::Schema.define(version: 20150401181401) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "department_id"
+    t.decimal  "cgpa",          precision: 3, scale: 2
   end
 
   add_index "students", ["department_id"], name: "index_students_on_department_id", using: :btree

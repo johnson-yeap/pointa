@@ -2,21 +2,49 @@
 <br>
 <%#= @user.inspect %>
 <br>
-<%#= @student.inspect %>
+<%#= @current_student.inspect %>
 
 
+
 <br>
-Student Name : <%= @student.name %>
+Student Name : <%= @current_student.name %>
 <br>
-Student Matric No : <%= @student.matric_no %>
+Student Matric No : <%= @current_student.matric_no %>
 <br>
-Programme : <%= @student.department.bachelor.name %>
+Programme : <%= @current_student.department.bachelor.name %>
 <br>
-Student Department : <%= @student.department.name %>
-<br>	
-Current CGPA :
+Student Department : <%= @current_student.department.name %>
 <br>
+
+<% f = @current_student.enrollments.where(completed: true) %>
+<% gpa = f.inject(0) { |sum, p| sum + p.grade.points * p.course.ch } %>
+<% ch = f.inject(0) { |sum, p| sum + p.course.ch } %>
+Current CGPA : <strong><%= (gpa/ch).round(2) %></strong>
+
 <br>
+
+<div class="container">
+    <div class="row">
+        <div>
+            <h3>SPI : </h3>
+        </div>
+        <% @course_components.each_with_index do |component, index| %>
+        <div class="col-md-1 col-sm-2 col-xs-3 text-center">
+            <button class="btn btn-danger" type="button">
+                <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
+                <span class="badge"><%= @current_student.courses.where(course_component_id: component.id).count %></span>
+            </button>
+            <div>
+                <h5><%= component.code %></h5>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>
+
+<br>
+
+
 
 <%= link_to 'New Enrollment', new_enrollment_path %>
 <br>
@@ -27,7 +55,7 @@ Current CGPA :
 <!-- Previous Semester : <%#= @last_completed_enrollment.academic_year_semester.academic_year.name %>,  <%#= @last_completed_enrollment.academic_year_semester.semester.name %> -->
 
 <% @academic_sessions.each_with_index do |session, index| %>
-    <% @incompleted_enrollments = Enrollment.all.where(academic_year_semester_id: session.id, student_id: @student_id, completed: false, grade_id: nil) %>
+    <% incompleted_enrollments = Enrollment.all.where(academic_year_semester_id: session.id, student_id: @current_student.id, completed: false, grade_id: nil) %>
 
     <% if index == 0 %>
         <!-- if completed = FALSE -->
@@ -37,7 +65,7 @@ Current CGPA :
     <% end %>
 
     <!-- show only if session has enrollments as well as both academic_year and semester -->
-    <% if session.academic_year_id != nil && session.semester_id != nil && @incompleted_enrollments != [] %>
+    <% if session.academic_year_id != nil && session.semester_id != nil && incompleted_enrollments != [] %>
         <%= session.academic_year.name %>, <%= session.semester.name %>
 
             <div class="table-responsive">
@@ -53,7 +81,7 @@ Current CGPA :
                         </tr>
                     </thead>
                     <tbody>
-                        <% @incompleted_enrollments.each_with_index do |e, i| %>
+                        <% incompleted_enrollments.each_with_index do |e, i| %>
                         <tr class="warning">
                             <td><%= i+1 %></td>
                             <td><%= e.course.course_code %></td>
@@ -71,7 +99,9 @@ Current CGPA :
 
 
 <% @academic_sessions.each_with_index do |session, index| %>
-    <% @completed_enrollments = Enrollment.all.where(academic_year_semester_id: session.id, student_id: @student_id, completed: true) %>
+    <% completed_enrollments = Enrollment.all.where(academic_year_semester_id: session.id, student_id: @current_student.id, completed: true) %>
+    <% total_gpa = completed_enrollments.inject(0) { |sum, p| sum + p.grade.points * p.course.ch } %>
+    <% total_ch = completed_enrollments.inject(0) { |sum, p| sum + p.course.ch } %>
 
     <% if index == 0 %>
         <!-- if completed = TRUE -->
@@ -81,11 +111,12 @@ Current CGPA :
     <% end %>
 
     <!-- show only if session has enrollments as well as both academic_year and semester -->
-    <% if session.academic_year_id != nil && session.semester_id != nil && @completed_enrollments != [] %>
+    <% if session.academic_year_id != nil && session.semester_id != nil && completed_enrollments != [] %>
+        
         <%= session.academic_year.name %>, <%= session.semester.name %>
 
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -94,24 +125,27 @@ Current CGPA :
                             <th>Credit Hours</th>
                             <th>Grade</th>
                             <th>Grade Points</th>
+                            <th>GPA</th>
                         </tr>
                     </thead>
                     <tbody>
-                    	<% @completed_enrollments.each_with_index do |e, i| %>
+                    	<% completed_enrollments.each_with_index do |e, i| %>
                     	<tr class="success">
                     		<td><%= i+1 %></td>
                     		<td><%= e.course.course_code %></td>
                     		<td><%= e.course.name %></td>
                     		<td><%= e.course.ch %></td>
                     		<td><%= e.grade.name %></td>
-                    		<td><%= e.grade.points %></td>
+                    		<td><%= e.grade.points * e.course.ch %></td>
+                            <td></td>
                     	</tr>
                         <% end %>
                         <tr class="info">
                             <td colspan="3"><div class="text-right"><strong>Total</strong></div></td>
-                            <td>Total ch</td>
+                            <td><%= total_ch %></td>
                             <td></td>
-                            <td>Total GPA</td>
+                            <td><%= total_gpa %></td>
+                            <td><strong><%= (total_gpa/total_ch).round(2) %></strong></td>
                         </tr>
                     </tbody>
                 </table>

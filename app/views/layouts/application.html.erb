@@ -33,7 +33,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-          <li><%= link_to 'Fulfillment', dashboard_user_path(current_user.id) %></li>
+          <li><%= link_to 'Dashboard', dashboard_user_path(current_user.id) %></li>
           <!-- else -->
           <!-- redirect_to fulfillment section on the landing page/ something else -->
           <% end %>

@@ -7,6 +7,7 @@ class EnrollmentsController < ApplicationController
   def new
     @current_student = current_user.student
     @incomplete_academic_sessions = AcademicYearSemester.where.not(id: @current_student.academic_year_semesters)
+    @incomplete_courses = Course.where.not(id: @current_student.courses)
   	# @enrollments =  @current_student.enrollments.build
   end
 
