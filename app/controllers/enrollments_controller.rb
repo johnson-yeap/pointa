@@ -6,6 +6,10 @@ class EnrollmentsController < ApplicationController
 
   def new
     @current_student = current_user.student
+    @student_enrollments = @current_student.enrollments
+    @current_gpa = @student_enrollments.inject(0) { |sum, e| sum + e.grade.points * e.course.ch }
+    @current_total_ch = @student_enrollments.inject(0) { |sum, e| sum + e.course.ch } 
+    @current_cgpa = (@current_gpa / @current_total_ch).round(2)
     @incomplete_academic_sessions = AcademicYearSemester.where.not(id: @current_student.academic_year_semesters)
     @incomplete_courses = Course.where.not(id: @current_student.courses)
   	# @enrollments =  @current_student.enrollments.build
@@ -25,7 +29,7 @@ class EnrollmentsController < ApplicationController
 
   private
     def enrollment_params
-        params.require(:enrollment).permit(:student_id, :course_id, :grade_id, :academic_year_semester_id)
+        params.require(:enrollment).permit(:student_id, :course_id, :grade_id, :academic_year_semester_id, :completed)
     end
 
 end

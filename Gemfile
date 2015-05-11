@@ -48,7 +48,7 @@ gem 'bootstrap-sass', '~> 3.3.0'
 gem 'autoprefixer-rails'
 
 # Font Awesome
-gem 'font-awesome-rails'
+gem 'font-awesome-sass', '~> 4.3.0'
 
 group :production do
 	gem 'rails_12factor'

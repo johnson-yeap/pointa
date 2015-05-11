@@ -23,6 +23,6 @@ class StudentsController < ApplicationController
 	private
         def student_params
         	# include :id in enrollments_attributes prevents duplicates in nested form
-            params.require(:student).permit(:id, :name, :matric_no, :department_id, enrollments_attributes: [:id, :student_id, :course_id, :grade_id, :academic_year_semester_id])
+            params.require(:student).permit(:id, :name, :matric_no, :department_id, enrollments_attributes: [:id, :student_id, :course_id, :grade_id, :academic_year_semester_id, :completed])
         end
 end

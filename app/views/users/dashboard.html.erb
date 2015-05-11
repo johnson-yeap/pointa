@@ -55,7 +55,9 @@ Current CGPA : <strong><%= (gpa/ch).round(2) %></strong>
 <!-- Previous Semester : <%#= @last_completed_enrollment.academic_year_semester.academic_year.name %>,  <%#= @last_completed_enrollment.academic_year_semester.semester.name %> -->
 
 <% @academic_sessions.each_with_index do |session, index| %>
-    <% incompleted_enrollments = Enrollment.all.where(academic_year_semester_id: session.id, student_id: @current_student.id, completed: false, grade_id: nil) %>
+    <% incompleted_enrollments = Enrollment.all.where(academic_year_semester_id: session.id, student_id: @current_student.id, completed: false) %>
+    <!-- grade_id = nil is not taken into consideration because -->
+    <!-- the goals set do have grades. -->
 
     <% if index == 0 %>
         <!-- if completed = FALSE -->

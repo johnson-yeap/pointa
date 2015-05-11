@@ -9,3 +9,8 @@ function getSelectedSessionId() {
   for(var i = 0; i < sessions.length; i++)
   	sessions[i].value = eValue;
 }
+
+function checkCompleted(current_element_id) {
+	var checkbox_id = current_element_id.replace("grade_id", "completed");
+	document.getElementById(checkbox_id).checked = true;
+}

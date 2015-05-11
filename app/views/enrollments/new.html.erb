@@ -1,17 +1,26 @@
-<form class="form-horizontal">
-  <div class="form-group">
-    <%= label_tag(:academic_year_semester_id, "Academic Session", { class: 'col-xs-3 control-label' }) %>
-        <div class="col-xs-9">
-          <!-- <%#= select_tag :academic_year_semester_id, options_from_collection_for_select(AcademicYearSemester.all, :id, :virtual_name), prompt: "Please select your Academic Session", class: 'form-control' %> -->
-          <%= collection_select :enrollments, :academic_year_semester_id, @incomplete_academic_sessions, :id, :virtual_name, {prompt: "Please select your Academic Session"}, {class: 'form-control'} %>   
-      </div>
-  </div>
-</form>
+<div>
+<p>Current CGPA: <strong><%= @current_cgpa %></strong></p>
+</div>
+<div>
+<p>GPA:</p>
+</div>
 
+<% show_once  = true %>
 <%= nested_form_for(@current_student, html: { class: 'form-horizontal' }) do |f| %>
   
   <%= f.fields_for :enrollments do |e| %>
-    <!-- show only if the record not exists in the database -->
+    <% if show_once == true %>
+      <div class="form-group">
+        <%= label_tag(:academic_year_semester_id, "Academic Session", { class: 'col-xs-3 control-label' }) %>
+            <div class="col-xs-9">
+              <!-- <%#= select_tag :academic_year_semester_id, options_from_collection_for_select(AcademicYearSemester.all, :id, :virtual_name), prompt: "Please select your Academic Session", class: 'form-control' %> -->
+              <%= collection_select :enrollments, :academic_year_semester_id, @incomplete_academic_sessions, :id, :virtual_name, {prompt: "Please select your Academic Session"}, {class: 'form-control', required: true} %>   
+          </div>
+      </div>
+      <% show_once = false %>
+    <% end %>
+
+    <!-- show only if the record not exists in the database/ hide existing records -->
     <% if !e.object.persisted? %>
       <%= e.hidden_field :academic_year_semester_id, class: 'featureP', value: nil %>
 
@@ -25,9 +34,21 @@
       <div class="form-group">
         <%= e.label :grade_id, for: :grade_id, class: 'col-xs-3 control-label' %>
           <div class="col-xs-9">
-            <%= e.collection_select :grade_id, Grade.all, :id, :name, {prompt: "Select your Grade"}, {class: 'form-control'} %>
+            <%= e.collection_select :grade_id, Grade.all, :id, :name, {prompt: "Select your Grade"}, {class: 'form-control', onchange: 'checkCompleted(this.id)'} %>
           </div>
       </div>
+
+      <!-- If a grade is selected, check the checkbox -->
+      <div class="form-group">
+        <div class="col-xs-3 control-label">
+          <%= e.check_box :completed %>
+        </div>
+        <div class="col-xs-9">
+          <%= e.label :completed, "completed" %>
+        </div>
+      </div>
+
+
     <% end %>
   <% end %>
   
