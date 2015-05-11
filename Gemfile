@@ -69,3 +69,5 @@ gem 'devise'
 gem 'nested_form'
 
 gem 'cocoon'
+
+gem 'simple_ga'
