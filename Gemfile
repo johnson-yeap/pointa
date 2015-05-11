@@ -72,4 +72,4 @@ gem 'cocoon'
 
 gem 'simple_ga'
 
-gem 'ai4r-master'
+gem 'ai4r'
