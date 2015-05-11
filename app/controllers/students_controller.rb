@@ -16,7 +16,7 @@ class StudentsController < ApplicationController
 		else
 	       	# fail
 	        flash[:danger] = "Please try again."
-	        redirect_to new_enrollment_path
+	        redirect_to prediction_index_path
 	    end
 	end
 
