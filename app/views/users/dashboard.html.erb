@@ -22,6 +22,10 @@ Student Department : <%= @current_student.department.name %>
 Current CGPA : <strong><%= (gpa/ch).round(2) %></strong>
 
 <br>
+<br>
+Last Login: <%= l(current_user.last_sign_in_at, format: "%Y-%m-%-d %H:%M:%S") %>
+
+<br>
 
 <div class="container">
     <div class="row">
@@ -30,9 +34,15 @@ Current CGPA : <strong><%= (gpa/ch).round(2) %></strong>
         </div>
         <% @course_components.each_with_index do |component, index| %>
         <div class="col-md-1 col-sm-2 col-xs-3 text-center">
-            <button class="btn btn-danger" type="button">
+            <% required_ch = Spi.find_by(department_id: @current_student.department_id, course_component_id: component.id).required_ch %>
+            <% earned_ch = @current_student.courses.where(course_component_id: component.id).inject(0) { |sum, c| sum += c.ch } %>
+            <% if earned_ch == required_ch %>
+                <button class="btn btn-success" type="button">
+            <% else %>
+                <button class="btn btn-danger" type="button">
+            <% end %>
                 <span class="glyphicon glyphicon-align-left" aria-hidden="true"></span>
-                <span class="badge"><%= @current_student.courses.where(course_component_id: component.id).count %></span>
+                <span class="badge"><%= earned_ch %></span>
             </button>
             <div>
                 <h5><%= component.code %></h5>
