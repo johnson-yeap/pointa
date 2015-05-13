@@ -39,7 +39,7 @@ AcademicYearSemester.create(academic_year_id: 4, semester_id: 2)
 
 
 # Grades
-Grade.create(name: "A", points: 4.00)
+Grade.create(name: "A/A+", points: 4.00)
 Grade.create(name: "A-", points: 3.70)
 Grade.create(name: "B+", points: 3.30)
 Grade.create(name: "B", points: 3.00)
@@ -121,6 +121,9 @@ Course.create(name: "Advanced Network Technology", course_code: "WRES2203", ch: 
 Course.create(name: "Speaking Skills in English", course_code: "GTEE1109", ch: 3, course_component_id: 8)
 Course.create(name: "Writing Skills in English", course_code: "GTEE1109", ch: 3, course_component_id: 8)
 Course.create(name: "Introduction to Photography", course_code: "GNEK1037", ch: 2, course_component_id: 4)
+Course.create(name: "Technical Writing", course_code: "GTEE1113", ch: 3, course_component_id: 8)
+Course.create(name: "Presentation Skills at Workplace", course_code: "GTEE1111", ch: 3, course_component_id: 8)
+Course.create(name: "Introduction to Pottery", course_code: "GREK1008", ch: 2, course_component_id: 4)
 
 # WEK110064
 Enrollment.create(student_id: 1, course_id: 1, grade_id: 1, academic_year_semester_id: 1, completed: true)
@@ -144,7 +147,6 @@ Enrollment.create(student_id: 1, course_id: 14, grade_id: 1, academic_year_semes
 Enrollment.create(student_id: 1, course_id: 13, grade_id: 1, academic_year_semester_id: 3, completed: true)
 Enrollment.create(student_id: 1, course_id: 15, grade_id: 3, academic_year_semester_id: 3, completed: true)
 
-# exclude GNEK1037
 Enrollment.create(student_id: 1, course_id: 17, grade_id: 3, academic_year_semester_id: 4, completed: true)
 Enrollment.create(student_id: 1, course_id: 18, grade_id: 4, academic_year_semester_id: 4, completed: true)
 Enrollment.create(student_id: 1, course_id: 19, grade_id: 1, academic_year_semester_id: 4, completed: true)
@@ -152,10 +154,8 @@ Enrollment.create(student_id: 1, course_id: 20, grade_id: 2, academic_year_semes
 Enrollment.create(student_id: 1, course_id: 21, grade_id: 3, academic_year_semester_id: 4, completed: true)
 Enrollment.create(student_id: 1, course_id: 41, grade_id: 8, academic_year_semester_id: 4, completed: true)
 
-
 Enrollment.create(student_id: 1, course_id: 22, grade_id: 1, academic_year_semester_id: 5, completed: true)
 
-# A+ is treated as A for the time being
 Enrollment.create(student_id: 1, course_id: 32, grade_id: 2, academic_year_semester_id: 7, completed: true)
 Enrollment.create(student_id: 1, course_id: 29, grade_id: 1, academic_year_semester_id: 7, completed: true)
 Enrollment.create(student_id: 1, course_id: 33, grade_id: 3, academic_year_semester_id: 7, completed: true)

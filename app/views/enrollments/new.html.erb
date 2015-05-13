@@ -5,21 +5,20 @@
 <p>GPA:</p>
 </div>
 
-<% show_once  = true %>
+
+<form class="form-horizontal">
+  <div class="form-group">
+    <%= label_tag(:academic_year_semester_id, "Academic Session", { class: 'col-xs-3 control-label' }) %>
+      <div class="col-xs-9">
+          <!-- <%#= select_tag :academic_year_semester_id, options_from_collection_for_select(AcademicYearSemester.all, :id, :virtual_name), prompt: "Please select your Academic Session", class: 'form-control' %> -->
+          <%= collection_select :enrollments, :academic_year_semester_id, @incomplete_academic_sessions, :id, :virtual_name, {prompt: "Please select your Academic Session"}, {class: 'form-control', required: true} %>   
+      </div>
+  </div>
+</form>
+
 <%= nested_form_for(@current_student, html: { class: 'form-horizontal' }) do |f| %>
   
   <%= f.fields_for :enrollments do |e| %>
-    <% if show_once == true %>
-      <div class="form-group">
-        <%= label_tag(:academic_year_semester_id, "Academic Session", { class: 'col-xs-3 control-label' }) %>
-            <div class="col-xs-9">
-              <!-- <%#= select_tag :academic_year_semester_id, options_from_collection_for_select(AcademicYearSemester.all, :id, :virtual_name), prompt: "Please select your Academic Session", class: 'form-control' %> -->
-              <%= collection_select :enrollments, :academic_year_semester_id, @incomplete_academic_sessions, :id, :virtual_name, {prompt: "Please select your Academic Session"}, {class: 'form-control', required: true} %>   
-          </div>
-      </div>
-      <% show_once = false %>
-    <% end %>
-
     <!-- show only if the record not exists in the database/ hide existing records -->
     <% if !e.object.persisted? %>
       <%= e.hidden_field :academic_year_semester_id, class: 'featureP', value: nil %>

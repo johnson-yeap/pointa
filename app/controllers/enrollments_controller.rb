@@ -8,12 +8,12 @@ class EnrollmentsController < ApplicationController
     @current_student = current_user.student
     @student_completed_enrollments = @current_student.enrollments.where(completed: true)
 
-    cgpa_excluded_enrollments = @student_completed_enrollments.where("grade_id = ? OR course_id IN (?)", 8, [22, 40])
+    cgpa_excluded_enrollments = @student_completed_enrollments.where("grade_id = ? OR course_id IN (?)", 8, [22, 40, 42, 43])
     cgpa_included_enrollments = @student_completed_enrollments - cgpa_excluded_enrollments
 
     current_gpa = cgpa_included_enrollments.inject(0) { |sum, e| sum + e.grade.points * e.course.ch }
     current_total_ch = cgpa_included_enrollments.inject(0) { |sum, e| sum + e.course.ch } 
-    @current_cgpa = (current_gpa / current_total_ch).round(2)
+    @current_cgpa = (current_gpa / current_total_ch).round(2) if current_total_ch != 0
 
     @incomplete_academic_sessions = AcademicYearSemester.where.not(id: @current_student.academic_year_semesters)
     @incomplete_courses = Course.where.not(id: @current_student.courses)

@@ -19,7 +19,7 @@ Student Department : <%= @current_student.department.name %>
 
 <% gpa = @cgpa_included_enrollments.inject(0) { |sum, p| sum + p.grade.points * p.course.ch } %>
 <% ch = @cgpa_included_enrollments.inject(0) { |sum, p| sum + p.course.ch } %>
-Current CGPA : <strong><%= (gpa/ch).round(2) %></strong>
+Current CGPA : <strong><%= (gpa/ch).round(2) if ch != 0 %></strong>
 
 <br>
 <br>
@@ -38,6 +38,8 @@ Last Login: <%= l(current_user.last_sign_in_at, format: "%Y-%m-%-d %H:%M:%S") %>
             <% earned_ch = @current_student.courses.where(course_component_id: component.id).inject(0) { |sum, c| sum += c.ch } %>
             <% if earned_ch == required_ch %>
                 <button class="btn btn-success" type="button">
+            <% elsif earned_ch > required_ch %>
+                <button class="btn btn-warning" type="button">
             <% else %>
                 <button class="btn btn-danger" type="button">
             <% end %>
@@ -81,7 +83,7 @@ Last Login: <%= l(current_user.last_sign_in_at, format: "%Y-%m-%-d %H:%M:%S") %>
         <%= session.academic_year.name %>, <%= session.semester.name %>
 
             <div class="table-responsive">
-                <table class="table">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>No</th>
