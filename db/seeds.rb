@@ -43,6 +43,7 @@ Grade.create(name: "B", points: 3.00)
 Grade.create(name: "B-", points: 2.70)
 Grade.create(name: "C+", points: 2.30)
 Grade.create(name: "C", points: 2.00)
+Grade.create(name: "S", points: nil)
 
 # Bachelors
 Bachelor.create(name: "Bachelor of Computer Science")
@@ -120,6 +121,7 @@ Enrollment.create(student_id: 1, course_id: 11, grade_id: 2, academic_year_semes
 Enrollment.create(student_id: 1, course_id: 12, grade_id: 4, academic_year_semester_id: 2, completed: true)
 Enrollment.create(student_id: 1, course_id: 9, grade_id: 2, academic_year_semester_id: 2, completed: true)
 Enrollment.create(student_id: 1, course_id: 6, grade_id: 1, academic_year_semester_id: 2, completed: true)
+Enrollment.create(student_id: 1, course_id: 8, grade_id: 8, academic_year_semester_id: 2, completed: true)
 
 Enrollment.create(student_id: 1, course_id: 40, grade_id: 3, academic_year_semester_id: 3, completed: true)
 Enrollment.create(student_id: 1, course_id: 23, grade_id: 1, academic_year_semester_id: 3, completed: true)

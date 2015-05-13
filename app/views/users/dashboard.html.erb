@@ -16,9 +16,9 @@ Programme : <%= @current_student.department.bachelor.name %>
 Student Department : <%= @current_student.department.name %>
 <br>
 
-<% f = @current_student.enrollments.where(completed: true) %>
-<% gpa = f.inject(0) { |sum, p| sum + p.grade.points * p.course.ch } %>
-<% ch = f.inject(0) { |sum, p| sum + p.course.ch } %>
+
+<% gpa = @cgpa_included_enrollments.inject(0) { |sum, p| sum + p.grade.points * p.course.ch } %>
+<% ch = @cgpa_included_enrollments.inject(0) { |sum, p| sum + p.course.ch } %>
 Current CGPA : <strong><%= (gpa/ch).round(2) %></strong>
 
 <br>
@@ -55,7 +55,7 @@ Current CGPA : <strong><%= (gpa/ch).round(2) %></strong>
 <!-- Previous Semester : <%#= @last_completed_enrollment.academic_year_semester.academic_year.name %>,  <%#= @last_completed_enrollment.academic_year_semester.semester.name %> -->
 
 <% @academic_sessions.each_with_index do |session, index| %>
-    <% incompleted_enrollments = Enrollment.all.where(academic_year_semester_id: session.id, student_id: @current_student.id, completed: false) %>
+    <% incompleted_enrollments = @incompleted_enrollments.where(academic_year_semester_id: session.id) %>
     <!-- grade_id = nil is not taken into consideration because -->
     <!-- the goals set do have grades. -->
 
@@ -101,9 +101,14 @@ Current CGPA : <strong><%= (gpa/ch).round(2) %></strong>
 
 
 <% @academic_sessions.each_with_index do |session, index| %>
-    <% completed_enrollments = Enrollment.all.where(academic_year_semester_id: session.id, student_id: @current_student.id, completed: true) %>
-    <% total_gpa = completed_enrollments.inject(0) { |sum, p| sum + p.grade.points * p.course.ch } %>
+    <% completed_enrollments = @completed_enrollments.where(academic_year_semester_id: session.id) %>
+
+    <% total_gpa = completed_enrollments.inject(0) { |sum, p| p.grade.points != nil ? sum + p.grade.points * p.course.ch : sum } %>
     <% total_ch = completed_enrollments.inject(0) { |sum, p| sum + p.course.ch } %>
+
+    <% completed_cgpa_included_enrollments = completed_enrollments - @cgpa_excluded_enrollments %>
+    <% final_gpa = completed_cgpa_included_enrollments.inject(0) { |sum, p| sum + p.grade.points * p.course.ch } %>
+    <% final_ch = completed_cgpa_included_enrollments.inject(0) { |sum, p| sum + p.course.ch } %>
 
     <% if index == 0 %>
         <!-- if completed = TRUE -->
@@ -132,13 +137,17 @@ Current CGPA : <strong><%= (gpa/ch).round(2) %></strong>
                     </thead>
                     <tbody>
                     	<% completed_enrollments.each_with_index do |e, i| %>
-                    	<tr class="success">
+                        <% if @cgpa_excluded_enrollments.exists?(id: e.id) %>
+                            <tr class="active">
+                        <% else %>
+                    	   <tr class="success">
+                        <% end %>
                     		<td><%= i+1 %></td>
                     		<td><%= e.course.course_code %></td>
                     		<td><%= e.course.name %></td>
                     		<td><%= e.course.ch %></td>
                     		<td><%= e.grade.name %></td>
-                    		<td><%= e.grade.points * e.course.ch %></td>
+                    		<td><%= e.grade.points != nil ? e.grade.points * e.course.ch : "-" %></td>
                             <td></td>
                     	</tr>
                         <% end %>
@@ -147,7 +156,7 @@ Current CGPA : <strong><%= (gpa/ch).round(2) %></strong>
                             <td><%= total_ch %></td>
                             <td></td>
                             <td><%= total_gpa %></td>
-                            <td><strong><%= (total_gpa/total_ch).round(2) %></strong></td>
+                            <td><strong><%= (final_gpa/final_ch).round(2) if final_ch != 0 %></strong></td>
                         </tr>
                     </tbody>
                 </table>

@@ -28,6 +28,14 @@ class UsersController < ApplicationController
         @current_student = current_user.student
         @academic_sessions = @current_student.academic_year_semesters.order('id DESC')
         @course_components = CourseComponent.all
+
+        student_enrollments = @current_student.enrollments
+
+        @completed_enrollments = student_enrollments.where(completed: true)
+        @incompleted_enrollments = student_enrollments.where(completed: false)
+
+        @cgpa_excluded_enrollments = @completed_enrollments.where("grade_id = ? OR course_id IN (?)", 8, [22, 40])
+        @cgpa_included_enrollments = @completed_enrollments - @cgpa_excluded_enrollments
         # find_by method finds the first record, hence not applicable
         # @last_completed_enrollment = Enrollment.where(student_id: student_id, completed: true).last
         # @enrollments = Enrollment.all.where(academic_year_semester_id: 1, student_id: student_id, completed: true)

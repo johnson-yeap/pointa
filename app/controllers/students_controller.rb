@@ -16,7 +16,7 @@ class StudentsController < ApplicationController
 		else
 	       	# fail
 	        flash[:danger] = "Please try again."
-	        redirect_to prediction_index_path
+	        redirect_to dashboard_user_path(current_user.id)
 	    end
 	end
 
