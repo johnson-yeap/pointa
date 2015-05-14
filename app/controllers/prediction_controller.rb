@@ -4,4 +4,7 @@ class PredictionController < ApplicationController
   	@result = search.run
   	@solutions = search.unique_solutions
   end
+
+  def new
+  end
 end

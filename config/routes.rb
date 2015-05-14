@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'prediction/index'
+  resources :prediction
 
   devise_for :users, controllers: { registrations: "registrations" }
   resources :users do
