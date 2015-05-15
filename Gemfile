@@ -13,6 +13,8 @@ group :assets do
 	gem 'uglifier', '>= 1.3.0'
 	# Use CoffeeScript for .js.coffee assets and views
 	gem 'coffee-rails', '~> 4.0.0'
+	# DataTables plugin
+	gem 'jquery-datatables-rails', '~> 3.3.0'
 end
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
