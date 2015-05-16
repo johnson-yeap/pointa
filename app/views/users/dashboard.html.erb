@@ -23,7 +23,7 @@ Current CGPA : <strong><%= (gpa/ch).round(2) if ch != 0 %></strong>
 
 <br>
 <br>
-Last Login: <%= l(current_user.last_sign_in_at, format: "%Y-%m-%-d %H:%M:%S") %>
+Last Login: <%= l(current_user.last_sign_in_at.in_time_zone('Kuala Lumpur'), format: "%Y-%m-%-d %H:%M:%S") %>
 
 <br>
 
