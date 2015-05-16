@@ -27,6 +27,16 @@ Achievable maximum CGPA: <%= @best_result.fitness %>
                         		<th>Improved value</th>
                         	</tr>
                         </thead>
+                        <tbody>
+                        <% @results.each do |solution| %>
+                        	<tr>
+                        		<th><%= solution.fitness %></th>
+                        		<th><%= solution.num_of_selected_genes %></th>
+                        		<th><%= solution.data %></th>
+                        		<th><div class="text-success"><%= solution.improved_fitness.round(2) %></div></th>
+                        	</tr>
+                        <% end %>
+                        </tbody>
                     </table>
                 </div>
             </div>
