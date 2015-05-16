@@ -2,15 +2,22 @@
 // put it into the registered courses.
 function getSelectedSessionId() {
 
-  var e = document.getElementById('enrollments_academic_year_semester_id');
-  var eValue = e.options[e.selectedIndex].value;
+  var session_menu = document.getElementById('enrollments_academic_year_semester_id');
+  var session_id = session_menu.options[session_menu.selectedIndex].value;
 
   var sessions = document.getElementsByClassName("featureP");
   for(var i = 0; i < sessions.length; i++)
-  	sessions[i].value = eValue;
+  	sessions[i].value = session_id;
 }
 
 function checkCompleted(current_element_id) {
+	var grade_menu = document.getElementById(current_element_id);
 	var checkbox_id = current_element_id.replace("grade_id", "completed");
-	document.getElementById(checkbox_id).checked = true;
+
+	var grade_id = grade_menu.options[grade_menu.selectedIndex].value;
+	if (grade_id == 0) {
+		document.getElementById(checkbox_id).checked = false;
+	} else {
+		document.getElementById(checkbox_id).checked = true;
+	}
 }
