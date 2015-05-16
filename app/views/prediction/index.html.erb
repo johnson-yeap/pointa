@@ -4,39 +4,8 @@
 
 <h1>Prediction</h1>
 
-Achievable maximum CGPA: <%= @result.fitness %>
+Achievable maximum CGPA: <%= @best_result.fitness %>
 <br>
-<%= @solutions.length %> possible paths.
+<%= @results.length %> possible paths.
 <br>
 <br>
-
-<% @solutions.each do |solution| %>
-	<label class="btn btn-default">
-		<input type="radio" name="options" id="option2" autocomplete="on"> 
-		<% solution.each_with_index do |data, index| %>
-			<!-- Array first index = 0 -->
-			<% index += 1 %>
-			<% if index % 2 == 0 %> 
-				<% case data %>
-					<% when 1 %>
-					  A
-					<% when 2 %>
-					  A-
-					<% when 3 %>
-					  B+
-					<% when 4 %>
-					  B
-					<% when 5 %>
-					  B-
-					<% when 6 %>
-					  C+
-					<% when 7 %>
-					  C
-				<% end %>
-			<% else %>
-				<%= data %>
-			<% end %>
-		<% end %>
-	</label>
-	<br>
-<% end %>
