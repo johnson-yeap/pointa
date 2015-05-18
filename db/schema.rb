@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150513172705) do
+ActiveRecord::Schema.define(version: 20150518042532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,9 +123,11 @@ ActiveRecord::Schema.define(version: 20150513172705) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "department_id"
-    t.decimal  "cgpa",          precision: 3, scale: 2
+    t.decimal  "cgpa",             precision: 3, scale: 2
+    t.integer  "academic_year_id"
   end
 
+  add_index "students", ["academic_year_id"], name: "index_students_on_academic_year_id", using: :btree
   add_index "students", ["department_id"], name: "index_students_on_department_id", using: :btree
 
   create_table "users", force: true do |t|

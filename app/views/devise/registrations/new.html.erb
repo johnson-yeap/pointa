@@ -59,6 +59,14 @@
           </div>
         </div>
 
+        <!-- Retrieve the collection of academic_years -->
+        <div class="form-group">
+          <%= student.label :batch, for: :academic_year_id, class: 'col-xs-3 control-label' %>
+          <div class="col-xs-9">
+            <%= student.collection_select :academic_year_id, AcademicYear.all, :id, :name, {prompt: "Select your year of intake"}, {class: 'form-control'} %>
+          </div>
+        </div>
+
         <!-- Retrieve the collection of departments -->
         <div class="form-group">
           <%= student.label :department_id, for: :department_id, class: 'col-xs-3 control-label' %>

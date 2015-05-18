@@ -11,9 +11,9 @@ User.create(username: "johnson_yeap", email: "johnson.yeap91@gmail.com", passwor
 User.create(username: "admin123", email: "johnson_yeap@hotmail.com", password: "admin123", password_confirmation: "admin123", student_id: 2, confirmed_at: "2015-03-28 11:23:05")
 User.create(username: "eeling_saw", email: "eeling_saw@siswa.um.edu.my", password: "pointa123", password_confirmation: "pointa123", student_id: 3, confirmed_at: "2015-03-28 11:23:05")
 
-Student.create(name: "Johnson Yeap", matric_no: "WEK110064", department_id: 1)
-Student.create(name: "Admin", matric_no: "Admin", department_id: 1)
-Student.create(name: "Saw Ee Ling", matric_no: "WEK110054", department_id: 1)
+Student.create(name: "Johnson Yeap", matric_no: "WEK110064", department_id: 1, academic_year_id: 1)
+Student.create(name: "Admin", matric_no: "Admin", department_id: 1, academic_year_id: 2)
+Student.create(name: "Saw Ee Ling", matric_no: "WEK110054", department_id: 1, academic_year_id: 1)
 
 
 # AcademicYears
