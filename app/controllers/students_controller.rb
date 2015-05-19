@@ -12,11 +12,18 @@ class StudentsController < ApplicationController
 		# update_attributes - update multiple attribute of single object and also pass model based validation.
 		if @student.update_attributes(student_params)
 			flash[:success] = "You have successfully enrolled."
-			redirect_to dashboard_user_path(current_user.id)
+			redirect_to dashboard_user_path
 		else
 	       	# fail
+	       	enrollments_hash = params[:student][:enrollments_attributes]
+	  		selected_courses = []
+	       	enrollments_hash.each do |enrollment|
+       			# enrollment is an array of size 2, where the last element is a hash.			
+       			selected_courses <<  enrollment.last["course_id"] if enrollment.last.has_key?("course_id")
+	       	end
+
 	        flash[:danger] = "Please try again."
-	        redirect_to dashboard_user_path(current_user.id)
+	        redirect_to dashboard_user_path
 	    end
 	end
 

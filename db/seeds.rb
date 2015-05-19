@@ -15,7 +15,6 @@ Student.create(name: "Johnson Yeap", matric_no: "WEK110064", department_id: 1, a
 Student.create(name: "Admin", matric_no: "Admin", department_id: 1, academic_year_id: 2)
 Student.create(name: "Saw Ee Ling", matric_no: "WEK110054", department_id: 1, academic_year_id: 1)
 
-
 # AcademicYears
 AcademicYear.create(name: "2011/2012")
 AcademicYear.create(name: "2012/2013")
@@ -36,7 +35,6 @@ AcademicYearSemester.create(academic_year_id: 3, semester_id: 1)
 AcademicYearSemester.create(academic_year_id: 3, semester_id: 2)
 AcademicYearSemester.create(academic_year_id: 4, semester_id: 1)	
 AcademicYearSemester.create(academic_year_id: 4, semester_id: 2)
-
 
 # Grades
 Grade.create(name: "A/A+", points: 4.00)
