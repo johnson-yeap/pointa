@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/rweng/jquery-datatables-rails.git
-  revision: 35fb97d3ebf98cd322df998ec694a9eeaa451190
+  revision: 24c0513a93cbd749da252dc85bf26e5ef46f5a5f
   specs:
     jquery-datatables-rails (3.3.0)
       actionpack (>= 3.1)
@@ -79,7 +79,7 @@ GEM
       sass (~> 3.2)
     hike (1.2.3)
     i18n (0.7.0)
-    jbuilder (2.2.13)
+    jbuilder (2.2.16)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-easing-rails (0.0.2)
