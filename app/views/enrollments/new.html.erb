@@ -1,3 +1,4 @@
+<h3>New Enrollment</h3>
 <div>
 <p>Current CGPA: <strong><%= @current_cgpa %></strong></p>
 </div>
@@ -11,7 +12,7 @@
     <%= label_tag(:academic_year_semester_id, "Academic Session", { class: 'col-xs-3 control-label' }) %>
       <div class="col-xs-9">
           <!-- <%#= select_tag :academic_year_semester_id, options_from_collection_for_select(AcademicYearSemester.all, :id, :virtual_name), prompt: "Please select your Academic Session", class: 'form-control' %> -->
-          <%= collection_select :enrollments, :academic_year_semester_id, @incomplete_academic_sessions, :id, :virtual_name, {prompt: "Please select your Academic Session"}, {class: 'form-control', required: true} %>   
+          <%= collection_select :enrollments, :academic_year_semester_id, @incomplete_academic_sessions, :id, :virtual_name, {prompt: "Please select your Academic Session"}, {class: 'form-control'} %>   
       </div>
   </div>
 </form>
@@ -46,11 +47,12 @@
           <%= e.label :completed, "completed" %>
         </div>
       </div>
-    <div class="form-group">
-      <div class="col-xs-9 col-xs-offset-3">
-        <%= e.link_to_remove 'Remove' %>
+      
+      <div class="form-group">
+        <div class="col-xs-9 col-xs-offset-3">
+          <%= e.link_to_remove 'Remove' %>
+        </div>
       </div>
-    </div>
     <% end %>
   <% end %>
   

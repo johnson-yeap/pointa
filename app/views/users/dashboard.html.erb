@@ -1,4 +1,4 @@
-<b>Dashboard</b>
+<h3>Dashboard</h3>
 <br>
 <%#= @user.inspect %>
 <br>
@@ -80,7 +80,9 @@ Last Login: <%= l(current_user.last_sign_in_at, format: "%Y-%m-%-d %H:%M:%S") %>
 
     <!-- show only if session has enrollments as well as both academic_year and semester -->
     <% if session.academic_year_id != nil && session.semester_id != nil && incompleted_enrollments != [] %>
-        <%= session.academic_year.name %>, <%= session.semester.name %>
+        <div><%= session.academic_year.name %>, <%= session.semester.name %>
+        <div class="pull-right"><%= link_to 'Edit', edit_enrollment_path(session.id) %></div>
+        </div>
 
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -131,8 +133,9 @@ Last Login: <%= l(current_user.last_sign_in_at, format: "%Y-%m-%-d %H:%M:%S") %>
 
     <!-- show only if session has enrollments as well as both academic_year and semester -->
     <% if session.academic_year_id != nil && session.semester_id != nil && completed_enrollments != [] %>
-        
-        <%= session.academic_year.name %>, <%= session.semester.name %>
+        <div><%= session.academic_year.name %>, <%= session.semester.name %>
+        <div class="pull-right"><%= link_to 'Edit', edit_enrollment_path(session.id) %></div>
+        </div>
 
             <div class="table-responsive">
                 <table class="table table-bordered">

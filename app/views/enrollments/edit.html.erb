@@ -1,0 +1,39 @@
+<h3>Update Enrollments</h3>
+<br>
+<strong><%= @session.academic_year.name %>,  <%= @session.semester.name %></strong>
+<br>
+<br>
+
+<%= nested_form_for(@current_student, html: { class: 'form-horizontal' }) do |f| %>
+	<%= f.fields_for :enrollments, @student_enrollments do |e| %>
+		<div class="form-group">
+        <%= e.label :course_id, for: :course_id, class: 'col-xs-3 control-label' %>
+          <div class="col-xs-9">
+            <%= e.collection_select :course_id, Course.all, :id, :name, {prompt: "Select your Course"}, {class: 'form-control'} %>
+          </div>
+      	</div>
+
+		<div class="form-group">
+		<%= e.label :grade_id, for: :grade_id, class: 'col-xs-3 control-label' %>
+		  <div class="col-xs-9">
+		    <%= e.collection_select :grade_id, Grade.all, :id, :name, {prompt: "Select your Grade"}, {class: 'form-control', onchange: 'checkCompleted(this.id)'} %>
+		  </div>
+		</div>
+
+		<!-- If a grade is selected, check the checkbox -->
+		<div class="form-group">
+			<div class="col-xs-3 control-label">
+		  		<%= e.check_box :completed %>
+			</div>
+			<div class="col-xs-9">
+			  	<%= e.label :completed, "completed" %>
+			</div>
+		</div>
+	<% end %>
+
+	<div class="form-group">
+	    <div class="col-xs-9 col-xs-offset-3">
+	      <%= f.submit "Update", class: 'btn btn-primary' %>
+	    </div>
+  	</div>
+<% end %>

@@ -17,7 +17,7 @@ class EnrollmentsController < ApplicationController
 
     @incomplete_academic_sessions = AcademicYearSemester.where.not(id: @current_student.academic_year_semesters)
     @incomplete_courses = Course.where.not(id: @current_student.courses)
-  	# @enrollments =  @current_student.enrollments.build
+  	@enrollments =  @current_student.enrollments.build
   end
 
   def create
@@ -30,6 +30,16 @@ class EnrollmentsController < ApplicationController
           flash[:danger] = "Please try again."
           redirect_to new_enrollment_path
       end
+  end
+
+  def edit
+    @current_student = current_user.student
+    @session = AcademicYearSemester.find_by_id(params[:id])
+    @student_enrollments = @current_student.enrollments.where(academic_year_semester: @session)
+    @incomplete_courses = Course.where.not(id: @current_student.courses)
+  end
+
+  def update
   end
 
   private
