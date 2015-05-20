@@ -36,7 +36,6 @@ class EnrollmentsController < ApplicationController
     @current_student = current_user.student
     @session = AcademicYearSemester.find_by_id(params[:id])
     @student_enrollments = @current_student.enrollments.where(academic_year_semester: @session)
-    @incomplete_courses = Course.where.not(id: @current_student.courses)
   end
 
   def update
