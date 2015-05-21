@@ -1,11 +1,20 @@
 <h3>Update Enrollments</h3>
 <br>
-<strong><%= @session.academic_year.name %>,  <%= @session.semester.name %></strong>
-<br>
+<div>
+	<strong><%= @session.academic_year.name %> / <%= @session.semester.name %></strong>
+</div>
+
 <br>
 
 <%= nested_form_for(@current_student, html: { class: 'form-horizontal' }) do |f| %>
 	<%= f.fields_for :enrollments, @student_enrollments do |e| %>
+
+		<div class="form-group">
+	        <div class="col-xs-2 col-xs-offset-10 text-right">
+	            <%= e.link_to_remove '', {class: 'btn glyphicon glyphicon-remove', "aria-hidden" => 'true'} %>
+	        </div>
+	    </div>
+
 		<div class="form-group">
         <%= e.label :course_id, for: :course_id, class: 'col-xs-3 control-label' %>
           <div class="col-xs-9">

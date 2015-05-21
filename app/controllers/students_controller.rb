@@ -23,7 +23,7 @@ class StudentsController < ApplicationController
 	       	end
 
 	        flash[:danger] = "Please try again."
-	        redirect_to dashboard_user_path
+	        redirect_to prediction_index_path(selected_courses)
 	    end
 	end
 

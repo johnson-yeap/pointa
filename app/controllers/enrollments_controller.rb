@@ -41,6 +41,9 @@ class EnrollmentsController < ApplicationController
   def update
   end
 
+  def destroy
+  end
+
   private
     def enrollment_params
         params.require(:enrollment).permit(:student_id, :course_id, :grade_id, :academic_year_semester_id, :completed)
