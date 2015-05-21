@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :enrollments
   resources :students
   resources :academic_year_semesters
+  resources :courses
 
   root 'welcome#index'
   # The priority is based upon order of creation: first created -> highest priority.

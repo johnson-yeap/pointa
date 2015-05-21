@@ -1,0 +1,19 @@
+<h3><%= @course.code %></h3>
+<h4><%= @course.name %></h4>
+
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">Course Details</h3>
+  </div>
+  <div class="panel-body">
+  	<h5 class="label label-primary">Description</h5>
+  	<p><%= @course.description %></p>
+  	<h5 class="label label-primary">Credit Hours</h5>
+  	<p><%= @course.ch %></p>
+  	<h5 class="label label-primary">Lecturer(s)</h5>
+  	<p><%= @course.ch %></p>
+  	<h5 class="label label-primary">Component</h5>
+  	<p><%= @course.course_component.name %></p>
+  </div>
+</div>

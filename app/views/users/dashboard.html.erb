@@ -106,7 +106,7 @@ Last Login: <%= l(current_user.last_sign_in_at, format: "%Y-%m-%-d %H:%M:%S") %>
                         <% incompleted_enrollments.each_with_index do |e, i| %>
                         <tr class="warning">
                             <td><%= i+1 %></td>
-                            <td><%= e.course.course_code %></td>
+                            <td><%= e.course.code %></td>
                             <td><%= e.course.name %></td>
                             <td><%= e.course.ch %></td>
                             <td><% if e.grade != nil %><%= e.grade.name %><% end %></td>
@@ -164,7 +164,7 @@ Last Login: <%= l(current_user.last_sign_in_at, format: "%Y-%m-%-d %H:%M:%S") %>
                     	   <tr class="success">
                         <% end %>
                     		<td><%= i+1 %></td>
-                    		<td><%= e.course.course_code %></td>
+                    		<td><%= e.course.code %></td>
                     		<td><%= e.course.name %></td>
                     		<td><%= e.course.ch %></td>
                     		<td><%= e.grade.name %></td>

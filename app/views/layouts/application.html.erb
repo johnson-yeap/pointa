@@ -38,7 +38,7 @@
           <!-- redirect_to fulfillment section on the landing page/ something else -->
           <% end %>
           <li><%= link_to 'Enrollment', new_enrollment_path %></li>
-          <li><%= link_to 'Course', root_path %></li>
+          <li><%= link_to 'Course', courses_path %></li>
           <li><%= link_to 'Analysis', analysis_index_path %></li>
           <% if user_signed_in? %>
             <li><%= link_to 'Logout', destroy_user_session_path , method: :delete %></li>
