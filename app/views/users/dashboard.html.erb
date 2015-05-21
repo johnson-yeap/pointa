@@ -29,9 +29,14 @@ Last Login: <%= l(current_user.last_sign_in_at, format: "%Y-%m-%-d %H:%M:%S") %>
 
 <div class="container">
     <div class="row">
-        <div>
-            <h3>SPI : </h3>
+        <div class="col-xs-11">
+            <h3>SPI : </h3> 
         </div>
+        <div class="col-xs-1">
+            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Grading scheme"></span>
+        </div>
+    </div>
+    <div class="row">
         <% @course_components.each_with_index do |component, index| %>
         <div class="col-md-1 col-sm-2 col-xs-3 text-center">
             <% required_ch = Spi.find_by(department_id: @current_student.department_id, course_component_id: component.id).required_ch %>
@@ -53,6 +58,7 @@ Last Login: <%= l(current_user.last_sign_in_at, format: "%Y-%m-%-d %H:%M:%S") %>
         <% end %>
     </div>
 </div>
+
 
 <br>
 
