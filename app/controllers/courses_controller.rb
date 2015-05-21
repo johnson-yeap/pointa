@@ -1,6 +1,4 @@
 class CoursesController < ApplicationController
-	autocomplete :course, :name, :full => true
-
 	def new
 	end
 
