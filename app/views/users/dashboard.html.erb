@@ -32,9 +32,9 @@ Last Login: <%= l(current_user.last_sign_in_at, format: "%Y-%m-%-d %H:%M:%S") %>
         <div class="col-xs-11">
             <h3>SPI : </h3> 
         </div>
-        <div class="col-xs-1">
-            <span class="glyphicon glyphicon-info-sign" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Grading scheme"></span>
-        </div>
+        <a href="#portfolioModal1" class="btn btn-default col-xs-1" data-toggle="modal">
+            <span class="glyphicon glyphicon-info-sign center-block" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Grading scheme"></span>
+        </a>
     </div>
     <div class="row">
         <% @course_components.each_with_index do |component, index| %>
@@ -184,3 +184,27 @@ Last Login: <%= l(current_user.last_sign_in_at, format: "%Y-%m-%-d %H:%M:%S") %>
             </div>
     <% end %>
 <% end %>
+
+<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="modal-body">
+                        <!-- Project Details Go Here -->
+                        <h2>Grading Scheme</h2>
+                        <p class="item-intro text-muted">University of Malaya<br>Last Updated : 2010</p>
+                        <%= image_tag "university/um_grading_scheme.png", class: "img-responsive img-centered", alt: "" %>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
