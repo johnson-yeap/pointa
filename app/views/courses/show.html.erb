@@ -9,11 +9,14 @@
   <div class="panel-body">
   	<h5 class="label label-primary">Description</h5>
   	<p><%= @course.description %></p>
-  	<h5 class="label label-primary">Credit Hours</h5>
+  	
+    <h5 class="label label-primary">Credit Hours</h5>
   	<p><%= @course.ch %></p>
-  	<h5 class="label label-primary">Lecturer(s)</h5>
-  	<p><%= @course.ch %></p>
-  	<h5 class="label label-primary">Component</h5>
+  	
+    <h5 class="label label-primary">Lecturer(s)</h5>
+  	<p><%= @lecturers %></p>
+  	
+    <h5 class="label label-primary">Component</h5>
   	<p><%= @course.course_component.name %></p>
   </div>
 </div>

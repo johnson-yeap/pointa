@@ -10,6 +10,24 @@ class CoursesController < ApplicationController
 
 	def show
 		@course = Course.find(params[:id])
+
+		num_lecturers = @course.lecturers.count
+		@lecturers = ""
+		if num_lecturers == 0
+			@lecturers = "N/A"
+		elsif num_lecturers == 1
+			@course.lecturers.each do |lecturer|
+				@lecturers = lecturer.name 
+			end
+		elsif num_lecturers > 1
+			@course.lecturers.each_with_index do |lecturer, index|
+				if index == num_lecturers-1
+					@lecturers += lecturer.name
+				else
+					@lecturers = lecturer.name + ", " + @lecturers 
+				end
+			end
+		end
 	end
 
 	def edit

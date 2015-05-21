@@ -173,3 +173,9 @@ Enrollment.create(student_id: 2, course_id: 24, grade_id: 1, academic_year_semes
 Enrollment.create(student_id: 2, course_id: 1, grade_id: 1, academic_year_semester_id: 1, completed: true)
 Enrollment.create(student_id: 2, course_id: 2, grade_id: 2, academic_year_semester_id: 1, completed: false)
 Enrollment.create(student_id: 2, course_id: 3, grade_id: 2, academic_year_semester_id: 2, completed: true)
+
+# Appointments
+Appointment.create(course_id: 16, lecturer_id: 2)
+Appointment.create(course_id: 37, lecturer_id: 4)
+Appointment.create(course_id: 27, lecturer_id: 1)
+Appointment.create(course_id: 25, lecturer_id: 3)
