@@ -21,6 +21,7 @@ Achievable maximum CGPA: <%= @best_result.fitness %>
                     <table class="table table-striped table-bordered table-hover" id="suggestion">
                         <thead>
                         	<tr>
+                                <th></th>
                         		<th>CGPA</th>
                         		<th>No. of selected courses</th>
                         		<th>Selection</th>
@@ -30,6 +31,7 @@ Achievable maximum CGPA: <%= @best_result.fitness %>
                         <tbody>
                         <% @results.each do |solution| %>
                         	<tr>
+                                <th><%= radio_button_tag(:age, "child") %></th>
                         		<th><%= solution.fitness %></th>
                         		<th><%= solution.num_of_selected_genes %></th>
                         		<th><%= solution.data %></th>
@@ -42,4 +44,8 @@ Achievable maximum CGPA: <%= @best_result.fitness %>
             </div>
         </div>
     </div>
+</div>
+
+ <div class="form-group">
+    <%= link_to "Enroll now", "https://www.facebook.com/",  class: 'btn btn-primary' %>
 </div>
