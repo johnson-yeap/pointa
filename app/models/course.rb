@@ -7,4 +7,8 @@ class Course < ActiveRecord::Base
 
   has_many :appointments
   has_many :lecturers, through: :appointments
+
+  def to_param
+  	code
+  end
 end

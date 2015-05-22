@@ -7,5 +7,9 @@ class User < ActiveRecord::Base
 
   # allows to create, update and destroy student attributes.
   accepts_nested_attributes_for :student
+
+  def to_param
+  	username
+  end
 end
 	

@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
-  get 'analysis/index'
+  resources :analysis
 
   resources :prediction
 
   devise_for :users, controllers: { registrations: "registrations" }
-  resources :users do
+  resources :users, param: :username do
     member do
       get 'dashboard'
     end
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :enrollments
   resources :students
   resources :academic_year_semesters
-  resources :courses
+  resources :courses, param: :code
 
   root 'welcome#index'
   # The priority is based upon order of creation: first created -> highest priority.

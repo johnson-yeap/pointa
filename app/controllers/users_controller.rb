@@ -16,7 +16,7 @@ class UsersController < ApplicationController
                # success
             UserNotifier.signup_email(@user).deliver
             flash[:success] = "Your account has been successfully created"
-            redirect_to dashboard_user_path(@user.id)
+            redirect_to dashboard_user_path(@user.username)
         else
             # fail
             flash[:danger] = "Please try again"

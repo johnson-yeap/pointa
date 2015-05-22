@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
 	end
 
 	def show
-		@course = Course.find_by(code: params[:id])
+		@course = Course.find_by(code: params[:code])
 
 		num_lecturers = @course.lecturers.count
 		@lecturers = ""
