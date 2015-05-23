@@ -1,0 +1,59 @@
+<h3>Dean List</h3>
+<br>
+
+<%= form_tag analysis_deanlist_path, method: :get, class: "form-horizontal", enforce_utf8: false  do %>
+  	<div class="form-group">
+      	<div class="col-md-8 col-xs-8 col-md-offset-1">
+          	<%= select_tag :id, options_from_collection_for_select(AcademicYearSemester.all, :id, :virtual_name), {prompt: "Please select the Academic Session", class: 'form-control', :onchange => "this.form.submit();"} %>
+      	</div>
+      	<div class="form-group">
+	   		<div class="col-xs-2">
+	      		<%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
+	    	</div>
+	  	</div>
+  	</div>
+<% end %>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4><span class="label label-info"><strong><%= @session.academic_year.name %> / <%= @session.semester.name %></strong></span></h4>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="dataTable_wrapper table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="suggestion">
+                        <thead>
+                        	<tr>
+                        		<th>Student</th>
+                        		<th>Bachelor</th>
+                        		<th>Department</th>
+                        		<th>GPA</th>
+                        	</tr>
+                        </thead>
+                        <tbody>
+                        <% @students.each do |student| %>
+                        	<% student_enrollments = student.enrollments.where(academic_year_semester: @session) %>
+                        	<% gpa_included_enrollments = student_enrollments.where.not("grade_id = ? OR course_id IN (?) OR completed = ?", 8, [22, 40, 42, 43], false) %>
+                        	<% gpa = gpa_included_enrollments.inject(0) { |sum, p| sum + p.grade.points * p.course.ch } %>
+							<% ch = gpa_included_enrollments.inject(0) { |sum, p| sum + p.course.ch } %>
+							<% student_gpa = (gpa/ch).round(2) if ch != 0 %>
+
+							<% if student_gpa != nil && student_gpa >= 3.70  %>
+	                        	<tr>
+	                        		<th><%= student.name %></th>
+	                        		<th><%= student.department.bachelor.name %></th>
+	                        		<th><%= student.department.name %></th>
+	                        		<th><%= student_gpa %></th>
+	                        	</tr>
+	                        <% end %>
+                        <% end %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

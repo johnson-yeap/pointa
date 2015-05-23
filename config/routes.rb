@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-
-  resources :analysis
-
-  resources :prediction
+  
+  get 'analysis/deanlist', to: 'analysis#deanlist'
 
   devise_for :users, controllers: { registrations: "registrations" }
   resources :users, param: :username do
@@ -11,6 +9,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :analysis
+  resources :prediction
   resources :enrollments
   resources :students
   resources :academic_year_semesters

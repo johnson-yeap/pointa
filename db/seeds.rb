@@ -55,6 +55,7 @@ Grade.create(name: "S", points: nil)
 
 # Bachelors
 Bachelor.create(name: "Bachelor of Computer Science")
+Bachelor.create(name: "Bachelor of Information Technology")
 
 # Departments
 Department.create(name: "Software Engineering", min_ch: 126, bachelor_id: 1)
