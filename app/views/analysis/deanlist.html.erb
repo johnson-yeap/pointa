@@ -3,14 +3,9 @@
 
 <%= form_tag analysis_deanlist_path, method: :get, class: "form-horizontal", enforce_utf8: false  do %>
   	<div class="form-group">
-      	<div class="col-md-8 col-xs-8 col-md-offset-1">
+      	<div class="col-md-8 col-xs-12 col-md-offset-2">
           	<%= select_tag :id, options_from_collection_for_select(AcademicYearSemester.all, :id, :virtual_name), {prompt: "Please select the Academic Session", class: 'form-control', :onchange => "this.form.submit();"} %>
       	</div>
-      	<div class="form-group">
-	   		<div class="col-xs-2">
-	      		<%= submit_tag "Search", name: nil, class: 'btn btn-primary' %>
-	    	</div>
-	  	</div>
   	</div>
 <% end %>
 
