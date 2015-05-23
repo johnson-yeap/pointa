@@ -6,6 +6,15 @@ class CoursesController < ApplicationController
 	end
 
 	def index
+		if params[:course_code]
+			@course = Course.find_by_code(params[:course_code])
+			if @course != nil
+				redirect_to course_path(params[:course_code])
+			else
+				flash[:danger] = "Course not found. Please try again."
+				redirect_to  courses_path
+			end
+		end
 	end
 
 	def show
