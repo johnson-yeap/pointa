@@ -42,7 +42,11 @@
 							<% student_gpa = (gpa/ch).round(2) if ch != 0 %>
 
 							<% if student_gpa != nil && student_gpa >= 3.70  %>
+                            <% if student == current_user.student %>
+                                <tr class="success">
+                            <% else %>
 	                        	<tr>
+                            <% end %>
 	                        		<th><%= student.name %></th>
 	                        		<th><%= student.department.bachelor.name %></th>
 	                        		<th><%= student.department.name %></th>
