@@ -22,8 +22,8 @@ class StudentsController < ApplicationController
        			selected_courses <<  enrollment.last["course_id"] if enrollment.last.has_key?("course_id")
 	       	end
 
-	        flash[:danger] = "Please try again."
-	        redirect_to prediction_index_path(selected_courses)
+	        flash[:notice] = "You may consider the following paths to achieve First Class Honours."
+	        redirect_to prediction_index_path(selected_courses: selected_courses)
 	    end
 	end
 
