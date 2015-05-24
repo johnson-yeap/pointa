@@ -12,7 +12,7 @@ class StudentsController < ApplicationController
 		# update_attributes - update multiple attribute of single object and also pass model based validation.
 		if @student.update_attributes(student_params)
 			flash[:success] = "You have successfully enrolled."
-			redirect_to dashboard_user_path
+			redirect_to dashboard_user_path(current_user.username)
 		else
 	       	# fail
 	       	enrollments_hash = params[:student][:enrollments_attributes]
