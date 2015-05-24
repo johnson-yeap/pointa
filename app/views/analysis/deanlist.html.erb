@@ -1,14 +1,14 @@
 <h3>Dean List</h3>
 <br>
 
-<%= form_tag analysis_deanlist_path, method: :get, class: "form-horizontal", enforce_utf8: false  do %>
+<!-- <%#= form_tag analysis_deanlist_path, method: :get, class: "form-horizontal", enforce_utf8: false  do %>
   	<div class="form-group">
       	<div class="col-md-8 col-xs-12 col-md-offset-2">
-          	<%= select_tag :id, options_from_collection_for_select(AcademicYearSemester.all, :id, :virtual_name), {prompt: "Please select the Academic Session", class: 'form-control', :onchange => "this.form.submit();"} %>
+          	<%#= select_tag :id, options_from_collection_for_select(AcademicYearSemester.all, :id, :virtual_name), {prompt: "Please select the Academic Session", class: 'form-control', :onchange => "this.form.submit();"} %>
       	</div>
   	</div>
-<% end %>
-
+<%# end %>
+ -->
 
 <div class="row">
     <div class="col-lg-12">
