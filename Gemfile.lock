@@ -60,7 +60,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
-    devise (3.4.1)
+    devise (3.5.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -152,7 +152,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    simple_ga (1.0.3)
+    simple_ga (1.1.0)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
