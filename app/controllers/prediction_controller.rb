@@ -3,7 +3,7 @@ class PredictionController < ApplicationController
 
   	@available_courses = []
   	@selected_courses = params[:selected_courses].uniq
- 	@selected_courses.each do |course_id|
+ 	  @selected_courses.each do |course_id|
  		course = Course.find(course_id)
  		course_data = []
  		course_data << course.name
