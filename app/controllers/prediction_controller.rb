@@ -1,4 +1,6 @@
 class PredictionController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
 
   	@available_courses = []
