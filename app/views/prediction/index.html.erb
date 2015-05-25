@@ -30,6 +30,7 @@ Achievable maximum CGPA: <%= @best_result.fitness %>
                         </thead>
                         <tbody>
                         <% @results.each do |solution| %>
+                            <% next if solution.fitness == 0 %>
                         	<tr>
                                 <th><%= radio_button_tag(:age, "child") %></th>
                         		<th><%= solution.fitness %></th>
@@ -64,7 +65,15 @@ Achievable maximum CGPA: <%= @best_result.fitness %>
                                         <br>
                                     <% end %>
                                 </th>
-                        		<th><div class="text-success"><%= solution.improved_fitness.round(2) %></div></th>
+                        		<th>
+                                    <% improved_value = solution.improved_fitness.round(2) %>
+                                    <% if improved_value >= 0 %>
+                                        <div class="text-success">
+                                    <% else %>
+                                        <div class="text-danger">
+                                    <% end %>
+                                        <%= improved_value %></div>
+                                </th>
                         	</tr>
                         <% end %>
                         </tbody>
