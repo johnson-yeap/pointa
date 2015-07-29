@@ -166,7 +166,7 @@ Enrollment.create(student_id: 1, course_id: 32, grade_id: 2, academic_year_semes
 Enrollment.create(student_id: 1, course_id: 29, grade_id: 1, academic_year_semester_id: 7, completed: true)
 Enrollment.create(student_id: 1, course_id: 33, grade_id: 3, academic_year_semester_id: 7, completed: true)
 Enrollment.create(student_id: 1, course_id: 31, grade_id: 1, academic_year_semester_id: 7, completed: true)
-Enrollment.create(student_id: 1, course_id: 34, grade_id: 5, academic_year_semester_id: 7, completed: true)
+Enrollment.create(student_id: 1, course_id: 34, grade_id: 1, academic_year_semester_id: 7, completed: true)
 Enrollment.create(student_id: 1, course_id: 24, grade_id: 1, academic_year_semester_id: 7, completed: true)
 
 # Admin

@@ -13,7 +13,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         
         if @user.save
-               # success
+            # success
             UserNotifier.signup_email(@user).deliver
             flash[:success] = "Your account has been successfully created"
             redirect_to dashboard_user_path(@user.username)
