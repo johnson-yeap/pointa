@@ -36,10 +36,11 @@
           <li><%= link_to 'Dashboard', dashboard_user_path(current_user.username) %></li>
           <!-- else -->
           <!-- redirect_to fulfillment section on the landing page/ something else -->
-          <% end %>
+          
           <li><%= link_to 'Enrollment', new_enrollment_path %></li>
           <li><%= link_to 'Course', courses_path %></li>
           <li><%= link_to 'Analysis', analysis_index_path %></li>
+          <% end %>
           <% if user_signed_in? %>
             <li><%= link_to 'Logout', destroy_user_session_path , method: :delete %></li>
           <% else %>
